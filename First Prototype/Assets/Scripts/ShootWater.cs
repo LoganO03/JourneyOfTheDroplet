@@ -31,9 +31,9 @@ public class ShootWater : MonoBehaviour
         Vector2 spawn = player.transform.position;
         Vector2 goal = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         GameObject water = Instantiate(waterShot, spawn, Quaternion.identity);
-        Debug.Log("Adding Force: " + (goal * moveForce));
+        Debug.Log("Adding Force: " + ((goal - spawn) * moveForce));
         waterBody = water.GetComponent<Rigidbody2D>();
-        waterBody.AddForce(goal * moveForce);
+        waterBody.AddForce((goal - spawn) * moveForce);
         Debug.Log("Velocity: " + waterBody.linearVelocity);
 
     }
