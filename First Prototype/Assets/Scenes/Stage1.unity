@@ -638,8 +638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waterShot: {fileID: 2286461357106161140, guid: 8c5d7dd37c362a14a96d98875c6c096b, type: 3}
-  waterBody: {fileID: 5311297875381559670, guid: 8c5d7dd37c362a14a96d98875c6c096b, type: 3}
-  moveForce: 3
+  moveForce: 1
 --- !u!1 &1114737122
 GameObject:
   m_ObjectHideFlags: 0
