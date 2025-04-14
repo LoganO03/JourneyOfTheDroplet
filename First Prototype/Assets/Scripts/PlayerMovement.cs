@@ -35,6 +35,8 @@ public class PlayerMovement : MonoBehaviour
     float oldtime;
     float expectedAcceleration;
 
+    bool resetFlag;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -89,7 +91,10 @@ public class PlayerMovement : MonoBehaviour
         oldx = transform.position.x;
         oldtime = Time.fixedTime;
 
-        if(oldHorizontal != Mathf.Ceil(Mathf.Abs(horizontal)) * Mathf.Sign(horizontal) || Mathf.Abs(discrepancyx) < 0.5) {
+        if(oldHorizontal != Mathf.Ceil(Mathf.Abs(horizontal)) * Mathf.Sign(horizontal) || Mathf.Abs(discrepancyx) < 0.5 || resetFlag) {
+
+            resetFlag = false;
+
             start = rb2D.linearVelocity.x;
             diff = maxSpeed * horizontal - start;
             float speedPercent;
@@ -116,6 +121,8 @@ public class PlayerMovement : MonoBehaviour
             rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x + expectedAcceleration, rb2D.linearVelocity.y);
             if(time == 0f) rate = 0;
             else rate = 1 / time;
+        } else if (rb2D.linearVelocity.x != maxSpeed * horizontal) {
+            resetFlag = true;
         }
 
 
