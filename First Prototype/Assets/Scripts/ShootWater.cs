@@ -52,6 +52,7 @@ public class ShootWater : MonoBehaviour
        // GameObject water = Instantiate(waterShot, spawn, Quaternion.identity);
         //Debug.Log("Adding Force: " + ((goal - spawn) * moveForce));
         GameObject w = waterList[pos];
+        w.SetActive(false);
         w.transform.position = spawn;
         w.SetActive(true);
         waterBody = w.GetComponent<Rigidbody2D>();
