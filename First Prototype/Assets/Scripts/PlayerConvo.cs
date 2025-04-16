@@ -5,11 +5,26 @@ public class PlayerConvo : MonoBehaviour
     [SerializeField] float talkDistance = 2;
     bool inConversation;
 
+    public GameObject pausepanel;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
             Interact();
+        }
+
+        else if (Input.GetKeyDown(KeyCode.Escape)){
+            PauseToggleActive();
+        }
+    }
+
+    void PauseToggleActive(){
+        if (pausepanel.activeInHierarchy) {
+            pausepanel.SetActive(false);
+        }
+        else {
+            pausepanel.SetActive(true);
         }
     }
 

@@ -7,6 +7,7 @@ using UnityEngine.Rendering;
 public class ShootWater : MonoBehaviour
 {
 
+    public GameObject pausepanel;
     //have existing objects in a queue instead of creating
 
     private List<GameObject> waterList = new List<GameObject>();
@@ -38,10 +39,12 @@ public class ShootWater : MonoBehaviour
     void Update()
     {
         pos = pos%201;
-         if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0))
         {
+            if (!pausepanel.activeInHierarchy){
+                Shoot();
+            }
             //Debug.Log("Shooting");
-            Shoot();
         }
         
     }
