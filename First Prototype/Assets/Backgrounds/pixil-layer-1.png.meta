@@ -147,6 +147,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -559,7 +572,25 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pixil-layer-1_0: 571745360846737319
+      pixil-layer-1_1: 5130815772381461547
+      pixil-layer-1_10: 8392620029015731416
+      pixil-layer-1_11: 4614885312298944154
+      pixil-layer-1_12: 1478415113717481790
+      pixil-layer-1_13: -2259840571136678471
+      pixil-layer-1_14: 988547980042094366
+      pixil-layer-1_15: -6615289398351633514
+      pixil-layer-1_16: -2957679029181316938
+      pixil-layer-1_17: -1559969527403257330
+      pixil-layer-1_2: -7768278644211947504
+      pixil-layer-1_3: 5154952826988421760
+      pixil-layer-1_4: -4396987969849493025
+      pixil-layer-1_5: -6607235658928766659
+      pixil-layer-1_6: -5688874639773327887
+      pixil-layer-1_7: -5765150628043275299
+      pixil-layer-1_8: -8432983281572556690
+      pixil-layer-1_9: -2193865822039287973
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
