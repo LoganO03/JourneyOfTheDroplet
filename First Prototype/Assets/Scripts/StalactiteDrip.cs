@@ -14,7 +14,6 @@ public class StalactiteDrip : MonoBehaviour
 
 
 
-    private GameObject water;
     public bool canDrip = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,8 +21,7 @@ public class StalactiteDrip : MonoBehaviour
     {
 
         
-        water = Instantiate(waterDrop, new Vector2(0,0), Quaternion.identity);
-        water.SetActive(false);
+        waterDrop.SetActive(false);
         stalactite = GetComponent<Rigidbody2D>();
         
     }
@@ -39,11 +37,11 @@ public class StalactiteDrip : MonoBehaviour
     }
 
     void Drip(){
-        water.SetActive(true);
+        waterDrop.SetActive(true);
         Vector2 spawn = stalactite.transform.position;
        // GameObject water = Instantiate(waterShot, spawn, Quaternion.identity);
         //Debug.Log("Adding Force: " + ((goal - spawn) * moveForce));
-        water.transform.position = spawn;
+        waterDrop.transform.position = spawn;
         
         canDrip = false;
         
