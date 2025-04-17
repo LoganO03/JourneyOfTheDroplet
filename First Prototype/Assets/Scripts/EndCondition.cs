@@ -22,7 +22,7 @@ public class EndCondition : MonoBehaviour
 
     public void endLevelOne(){
         if(scene == 1){
-            if(player.transform.position.x >= 100){
+            if(player.transform.position.x >= 109){
             GameManager.Instance.endLevel1 = true;
             Initiate.Fade("AtmHub", Color.black, 1.0f);
             }
