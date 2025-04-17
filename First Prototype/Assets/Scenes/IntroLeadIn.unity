@@ -225,9 +225,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0b6173d6bc4d4d98b8eafd5d5cd2f84, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destinationY: 0
+  destinationY: 24
   slurpSpeed: 0.1
-  maxSpeed: 5
+  maxSpeed: 4
   background0: {fileID: 482269061}
   speed0: 0
 --- !u!114 &261595775
