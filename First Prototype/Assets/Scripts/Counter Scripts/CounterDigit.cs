@@ -10,9 +10,6 @@ public class CounterDigit : MonoBehaviour
     float currentNumber = 0;
     [SerializeField] float maxDegreeDiff = 150;
     
-    float currentSlurp = 0;
-    float currentSpeed = 0;
-    int accelFlag = 0;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -39,7 +36,7 @@ public class CounterDigit : MonoBehaviour
             rotations -= (counter.displayedNum() - currentNumber);
         }
         currentNumber = counter.displayedNum();
-        if (Mathf.Abs(rotations) > 1.5) {
+        if (Mathf.Abs(rotations) > 1.5 / Mathf.Pow(10, digitIndex)) {
             rotate();
         } else {
             stick();
@@ -79,7 +76,7 @@ public class CounterDigit : MonoBehaviour
             z = Temp.x;
           }
         }
-        Debug.Log($"raw vector: {y}, {z}");
+        //Debug.Log($"raw vector: {y}, {z}");
 
         // determine signs of y and z
             // determine the placement of the counter on the 5 spin chart
@@ -114,24 +111,19 @@ public class CounterDigit : MonoBehaviour
             if((1 < c && c < 3)) {
                 invert = countery < 0;
             }
-            
             if(3 < c && c < 5) {
                 invert = countery > 0;
             }
-
             if(5 < c && c < 7) {
                 invert = countery < 0;
             }
-
             if(7 < c && c < 9) {
                 invert = countery > 0;
             }
-
             if (9 < c) {
                 invert = countery < 0;
             }
         }
-
 
         if((goalNumber > 1 && goalNumber < 3) || (goalNumber > 5 && goalNumber < 7) || goalNumber > 9) {
             y = -y;
@@ -143,9 +135,9 @@ public class CounterDigit : MonoBehaviour
             y = -y;
             z = -z;
         }
-        Debug.Log($"refined vector: {y}, {z}");
+        //Debug.Log($"refined vector: {y}, {z}");
         wheel.transform.LookAt(wheel.transform.position + new Vector3(0, y, z));    
-        Debug.Log(wheel.transform.rotation.eulerAngles);
+        //Debug.Log(wheel.transform.rotation.eulerAngles);
         if(wheel.transform.rotation.eulerAngles.z != 0) {
             wheel.transform.rotation *= Quaternion.AngleAxis(-wheel.transform.rotation.eulerAngles.z, Vector3.forward);
             wheel.transform.rotation *= Quaternion.AngleAxis(180, Vector3.right);

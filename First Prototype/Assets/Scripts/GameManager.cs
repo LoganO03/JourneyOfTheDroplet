@@ -24,6 +24,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI dialogueText;
     [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] GameObject dialoguePanel;
+    [SerializeField] CounterArray NumberInterface;
+
+    [SerializeField] public float playerWater = 0;
 
     public static event Action OnDialogueStarted;
     public static event Action OnDialogueEnded;
@@ -114,6 +117,6 @@ IEnumerator TypeTextUncapped(string line)
     // Update is called once per frame
     void Update()
     {
-        
+        NumberInterface.goalNumber = playerWater;
     }
 }

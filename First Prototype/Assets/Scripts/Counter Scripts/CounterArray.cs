@@ -22,21 +22,25 @@ public class CounterArray : MonoBehaviour
     // Update is called once per frame
     void Update() {
         //Check what number we're at right now
-        /*int i = digits.Length - 1;
-        float total = 0;
-        while(i >= 0) {
-            total = total * 10 + digits[i].at();
-            i -= 1;
-        }*/
         if(prevGoal != goalNumber) {
-            float num = digits[0].at();
-            digits[0].newGoal(goalNumber - num, goalNumber);
+            int i = digits.Length - 1;
+            float total = 0;
+            while(i >= 0) {
+                total = total * 10 + digits[i].at();
+                i -= 1;
+            }
+            i = digits.Length - 1;
+            while(i >= 0) {
+                float rotations = (goalNumber - total) / Mathf.Pow(10, i);
+                float goal = goalNumber / Mathf.Pow(10, i);
+                if(i > 0) { goal -= (goal % 1 - Mathf.Pow(goal % 1, 4)); rotations -= rotations % 1; }
+
+                digits[i].newGoal(rotations, goal % 10);
+                i -= 1;
+            }
         }
         prevGoal = goalNumber;
-
-
-
-
+        goalNumber += Time.deltaTime;
         //Debug.Log(total);
 
         //Compare that against goalNumber
