@@ -5,7 +5,10 @@ public class ToStage1 : MonoBehaviour
 
     public void ReactToClick() {
         Debug.Log("I've been clicked");
-        Initiate.Fade("Stage1", Color.black, 1.0f);
+        if(GameManager.Instance.endLevel1 == false){
+            Initiate.Fade("Stage1", Color.black, 1.0f);
+        }
+        
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

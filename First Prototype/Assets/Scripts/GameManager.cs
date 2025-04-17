@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
     public static event Action OnDialogueEnded;
     bool skipLineTriggered;
 
+    public bool endLevel1 = false;
+
 public void StartDialogue(string[] dialogue, int startPosition, string name)
     {
         nameText.text = name + "...";
