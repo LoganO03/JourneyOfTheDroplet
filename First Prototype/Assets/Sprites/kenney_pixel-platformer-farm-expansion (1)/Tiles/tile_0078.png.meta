@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f366dd9f17dedb1449f5a237bc5ec242
+guid: d9e24fb02d60e4f1fb92c3a6f959a3cb
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8568472696581796955
-    second: Stalactites_0
+      213: 7926631094506107384
+    second: tile_0078_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Stalactites_0
+      name: tile_0078_0
       rect:
         serializedVersion: 2
-        x: 299
-        y: 199
-        width: 902
-        height: 1401
+        x: 5
+        y: 3
+        width: 13
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b543463158459e670800000000000000
-      internalID: 8568472696581796955
+      spriteID: 8f13a9dbbfc010e60800000000000000
+      internalID: 7926631094506107384
       vertices: []
       indices: 
       edges: []
@@ -147,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      Stalactites_0: 8568472696581796955
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
