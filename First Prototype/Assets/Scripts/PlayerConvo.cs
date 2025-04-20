@@ -7,8 +7,12 @@ public class PlayerConvo : MonoBehaviour
 
     public GameObject pausepanel;
 
+    public GameObject prompt;
+
     void Update()
     {
+
+        Prompt();
         if (Input.GetKeyDown(KeyCode.E))
         {
             Interact();
@@ -26,6 +30,26 @@ public class PlayerConvo : MonoBehaviour
         else {
             pausepanel.SetActive(true);
         }
+    }
+
+    void Prompt(){
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, talkDistance, Vector2.up, 0, LayerMask.GetMask("NPC"));
+            if (hit)
+            {
+                Debug.Log("Hit Something!!" + hit.collider.gameObject.name);
+
+                if (hit.collider.gameObject.TryGetComponent(out NPC npc))
+                {
+                    prompt.SetActive(true);
+                }
+                else{
+                    prompt.SetActive(false);
+                }
+            }
+            else{
+                prompt.SetActive(false);
+            }
+
     }
 
     void Interact()

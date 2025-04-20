@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -54,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
         oldtime = Time.fixedTime;
     }
 
+    
+
     // Update is called once per frame
     void Update()
     {   
@@ -64,7 +67,7 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = new Vector3(1f, 1f, 1f);
         }
         animator.SetFloat("RawHorizontal", horizontal);
-
+        Debug.Log("" + animator.GetBool("grounded"));
         if (Input.GetKeyDown("space") && animator.GetBool("grounded"))
         {
             rb2D.AddForce(Vector2.up * 500);
