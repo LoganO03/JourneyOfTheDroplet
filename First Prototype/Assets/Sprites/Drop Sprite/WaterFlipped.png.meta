@@ -116,12 +116,12 @@ TextureImporter:
       name: WaterFlipped_0
       rect:
         serializedVersion: 2
-        x: 105
-        y: 79
-        width: 376
-        height: 502
+        x: 180
+        y: 80
+        width: 300
+        height: 500
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f017a1f61f7499f30bd449d3c0f99ad0
     internalID: 0
     vertices: []
     indices: 

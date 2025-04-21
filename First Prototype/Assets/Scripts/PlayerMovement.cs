@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    [SerializeField] Transform groundCapsule;
     private Rigidbody2D rb2D;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -135,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
 
 		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
 		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
-		Collider2D[] colliders = Physics2D.OverlapCapsuleAll(transform.position - new Vector3(0, 1.01f, 0), new Vector2(0.313f, 0.1f), CapsuleDirection2D.Horizontal, 90f, 1);
+		Collider2D[] colliders = Physics2D.OverlapCapsuleAll(groundCapsule.position, new Vector3(transform.localScale.x * groundCapsule.localPosition.x, transform.localScale.z * groundCapsule.localPosition.y, transform.localScale.z * groundCapsule.localPosition.z), CapsuleDirection2D.Horizontal, groundCapsule.rotation.eulerAngles.z);
 		for (int i = 0; i < colliders.Length; i++)
 		{
             if (colliders[i].gameObject != gameObject)
@@ -143,6 +143,7 @@ public class PlayerMovement : MonoBehaviour
                 m_Grounded = true;
                 if (!wasGrounded)
                     Debug.Log(colliders[i].name);
+                    animator.SetBool("grounded", true);
                     OnLandEvent.Invoke();
             }
         }
