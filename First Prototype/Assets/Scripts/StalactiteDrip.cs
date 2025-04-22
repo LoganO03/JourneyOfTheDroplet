@@ -10,7 +10,13 @@ public class StalactiteDrip : MonoBehaviour
    
     public GameObject waterDrop;
 
+
+    private GameObject wd;
+
     private Rigidbody2D stalactite;
+
+    private StalactiteWater sw;
+
 
 
 
@@ -21,8 +27,9 @@ public class StalactiteDrip : MonoBehaviour
     {
 
         
-        waterDrop.SetActive(false);
+        //waterDrop.SetActive(false);
         stalactite = GetComponent<Rigidbody2D>();
+        //sw = GetComponentInChildren<StalactiteWater>();
         
     }
 
@@ -37,13 +44,13 @@ public class StalactiteDrip : MonoBehaviour
     }
 
     void Drip(){
-        waterDrop.SetActive(true);
         Vector2 spawn = stalactite.transform.position;
-       // GameObject water = Instantiate(waterShot, spawn, Quaternion.identity);
-        //Debug.Log("Adding Force: " + ((goal - spawn) * moveForce));
-        waterDrop.transform.position = spawn;
-        
+        wd = Instantiate(waterDrop, spawn, Quaternion.identity);
+        wd.SetActive(true);
+        sw = wd.GetComponentInChildren<StalactiteWater>();
+        sw.water = wd;
         canDrip = false;
+        //Debug.Log("" + canDrip);
         
 
         
