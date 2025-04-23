@@ -22,8 +22,8 @@ public class Erode : MonoBehaviour
         //"Wall" name will need to be changed to actual name of layer
         if (col.gameObject.tag == "Wall")
         {
-            col.gameObject.SetActive(false);
-            Destroy(col.gameObject, 1);
+            //col.gameObject.SetActive(false);
+            Destroy(col.gameObject, 3);
         }
         //add if statement to know if x or y should shrink (Optional)
         //water.transform.localScale = new Vector3(0.1f, 0.1f, 1);
