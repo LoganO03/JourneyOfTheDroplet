@@ -22,9 +22,11 @@ public class EndCondition : MonoBehaviour
 
     public void endLevelOne(){
         if(scene == 1){
-            if(player.transform.position.x >= 109){
+            if(player.transform.position.x >= 101){
+            Rigidbody2D body = player.GetComponent<Rigidbody2D>();
+            body.AddForce(new UnityEngine.Vector2(5,5));
             GameManager.Instance.endLevel1 = true;
-            Initiate.Fade("AtmHub", Color.black, 1.0f);
+            Initiate.Fade("Stage2", Color.black, 1.0f);
             }
         }
     }

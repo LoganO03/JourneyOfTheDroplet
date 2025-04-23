@@ -16,7 +16,7 @@ public class WaterPickup : MonoBehaviour
 
     void OnTriggerStay2D (Collider2D other) {
         if(other.gameObject.layer == 6) { // player layer
-            float suckSpeed = 1 * Time.deltaTime; //other.transform.localScale.x / transform.localScale.x;
+            float suckSpeed = 2 * Time.deltaTime; //other.transform.localScale.x / transform.localScale.x;
             GameManager.Instance.playerWater += transform.localScale.x * suckSpeed;
             transform.localScale -= transform.localScale * suckSpeed;
         }
