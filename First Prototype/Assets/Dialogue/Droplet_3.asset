@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9300cdd1a21ad44ba3fb44ddb8e9e37, type: 3}
+  m_Name: Droplet_3
+  m_EditorClassIdentifier: 
+  dialogue:
+  - Woah! You just eroded away that dirt!
+  - Usually, that takes a long time
+  - Things like canyons, rivers, caves, and cliffs were all created from hundreds
+    of years of erosion!
+  - 'When there''s a lot of wind and water that interacts with the earth, it wears
+    away the land '
+  - That's erosion, and you recreated it!
+  - What you just did was amazing...
+  - This water here leads above ground
+  - I bet if you follow it, i bet you could make it out of this damp cave

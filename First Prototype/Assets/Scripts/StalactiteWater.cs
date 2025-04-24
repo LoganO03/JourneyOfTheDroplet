@@ -22,8 +22,13 @@ public class StalactiteWater : MonoBehaviour
     }
      void OnCollisionEnter2D(Collision2D col)
     {
-        water.SetActive(false);
+        //Debug.Log("" + col.gameObject);
+        
+        Destroy(water);
         s.canDrip = true;
+        
+        //water.SetActive(false);
+        
 
 
     }

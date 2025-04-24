@@ -15,11 +15,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Test Scenes/Sandbox.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
-    path: Assets/Scenes/Stage1.unity
-    guid: d281a7ba3c0a697dcb34d75ea1aa79e4
+    path: Assets/Scenes/IntroLeadIn.unity
+    guid: 005949e3a60214362a063f8f1ac3de7d
   - enabled: 1
     path: Assets/Scenes/Stage2.unity
     guid: 2d57235fa8fa54c4a9f7bf7bb8689671
+  - enabled: 1
+    path: Assets/Scenes/Stage1.unity
+    guid: d281a7ba3c0a697dcb34d75ea1aa79e4
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
