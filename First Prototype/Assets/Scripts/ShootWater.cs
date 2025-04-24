@@ -17,8 +17,10 @@ public class ShootWater : MonoBehaviour
     private Rigidbody2D player;
 
     [SerializeField] float waterVolume;
+    [SerializeField] float minCharacterScale;
 
     public int moveForce;
+
 
     private int pos = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -49,7 +51,8 @@ public class ShootWater : MonoBehaviour
             }
             //Debug.Log("Shooting");
         }
-        
+        float volume = (GameManager.Instance.playerWater * 3) / (Mathf.PI * 4);
+        transform.localScale = new Vector3(Mathf.Max(Mathf.Pow(volume, 0.33333f), minCharacterScale), Mathf.Max(Mathf.Pow(volume, 0.33333f), minCharacterScale), 1);
     }
 
     void Shoot(){
@@ -66,9 +69,5 @@ public class ShootWater : MonoBehaviour
         waterBody.totalForce = new Vector2(0,0);
         waterBody.AddForce((goal - spawn) * moveForce);
         pos ++;
-        
-
     }
-
-    
 }

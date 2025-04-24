@@ -39,6 +39,7 @@ public class StalactiteDrip : MonoBehaviour
     void Drip(){
         waterDrop.SetActive(true);
         Vector2 spawn = stalactite.transform.position;
+        waterDrop.GetComponent<Rigidbody2D>().linearVelocity = new Vector3(0, 0, 0);
        // GameObject water = Instantiate(waterShot, spawn, Quaternion.identity);
         //Debug.Log("Adding Force: " + ((goal - spawn) * moveForce));
         waterDrop.transform.position = spawn;

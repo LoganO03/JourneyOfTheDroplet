@@ -106,7 +106,7 @@ Shader "Universal Render Pipeline/2D/Sprite-Lit-Default"
                 o.lightingUV = half2(ComputeScreenPos(o.positionCS / o.positionCS.w).xy);
 
                 o.color = v.color * _Color * unity_SpriteColor;
-                o.color.w = o.color.w - o.positionCS.z * 800 * 4 - 3141.125;
+                o.color.w = o.color.w - o.positionCS.z * 800 * 2 - 3141 / 2;
                 return o;
             }
 

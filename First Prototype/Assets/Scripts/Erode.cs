@@ -22,7 +22,7 @@ public class Erode : MonoBehaviour
         //"Wall" name will need to be changed to actual name of layer
         if (col.gameObject.tag == "Wall")
         {
-            col.gameObject.SetActive(false);
+            //col.gameObject.SetActive(false);
             Destroy(col.gameObject, 1);
         }
         //add if statement to know if x or y should shrink (Optional)

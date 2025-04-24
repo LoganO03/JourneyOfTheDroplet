@@ -39,8 +39,7 @@ public class PlayerMovement : MonoBehaviour
     bool resetFlag;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
+    void Start() {
         rb2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -55,22 +54,23 @@ public class PlayerMovement : MonoBehaviour
         oldtime = Time.fixedTime;
     }
 
-    
-
     // Update is called once per frame
-    void Update()
-    {   
+    void Update() {
         horizontal = Input.GetAxisRaw("Horizontal");
         if (horizontal < 0 && m_Grounded) {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
+            spriteRenderer.flipX = true;
+            //transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         } else if (horizontal > 0 && m_Grounded) {
-            transform.localScale = new Vector3(1f, 1f, 1f);
+            spriteRenderer.flipX = false;
+            //transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
         animator.SetFloat("RawHorizontal", horizontal);
-        Debug.Log("" + animator.GetBool("grounded"));
         if (Input.GetKeyDown("space") && animator.GetBool("grounded"))
         {
-            rb2D.AddForce(Vector2.up * 500);
+            rb2D.AddForce(Vector2.up * 500 * rb2D.mass);
+            if(rb2D.linearVelocity.y > 0.1f) {
+                rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, 0.1f);
+            }
             animator.SetBool("grounded", false);
             m_Grounded = false; 
         }
@@ -78,11 +78,11 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("grounded", false);
             m_Grounded = false;
         }
-        
     }
 
     void FixedUpdate()
     {
+        rb2D.mass = Mathf.Max(GameManager.Instance.playerWater, transform.localScale.x);
         var dtime = Time.fixedTime - oldtime;
         float oldvx;
 
@@ -116,11 +116,8 @@ public class PlayerMovement : MonoBehaviour
             else if (progress * progress == 0f) x = 0;
             else x = 1 + (Mathf.Sqrt(1 - ((1 - progress) * (1 - progress))) - 1);
             if(float.IsNaN(x)) Debug.Log("");
-            
             float newVelocity = start + x * diff;
             expectedAcceleration = (newVelocity - rb2D.linearVelocity.x);
-
-
             rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x + expectedAcceleration, rb2D.linearVelocity.y);
             if(time == 0f) rate = 0;
             else rate = 1 / time;
@@ -142,7 +139,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 m_Grounded = true;
                 if (!wasGrounded)
-                    Debug.Log(colliders[i].name);
                     animator.SetBool("grounded", true);
                     OnLandEvent.Invoke();
             }

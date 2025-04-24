@@ -6,6 +6,7 @@ public class FollowCam : MonoBehaviour
     public GameObject playerSprite;
     public float boundaryPercent;
     public float easing;
+    public float scaleEasing;
 
     private float lBound;
     private float rBound;
@@ -27,6 +28,18 @@ public class FollowCam : MonoBehaviour
 
         if (playerSprite)
         {
+            Vector3 deviance = Camera.main.WorldToViewportPoint(playerSprite.transform.position);
+            Debug.Log(deviance);
+            if (Mathf.Abs(deviance.x - 0.5f) < 0.375f && Mathf.Abs(deviance.y - 0.5f) < 0.375f) {
+                GetComponent<Camera>().orthographicSize += (Mathf.Max(playerSprite.transform.localScale.x * 8, 1) - GetComponent<Camera>().orthographicSize) * scaleEasing;
+                transform.localScale += (playerSprite.transform.localScale - transform.localScale) * scaleEasing;
+            } else {
+                float scaleAmount = Mathf.Max(Mathf.Abs(deviance.x - 0.5f) + 1.125f, Mathf.Abs(deviance.x - 0.5f) + 1.125f);
+                
+                GetComponent<Camera>().orthographicSize += (GetComponent<Camera>().orthographicSize * scaleAmount - GetComponent<Camera>().orthographicSize) * scaleEasing;
+                transform.localScale += (transform.localScale * scaleAmount - transform.localScale) * scaleEasing;
+            }
+
             Vector3 spriteLoc = Camera.main.WorldToScreenPoint(playerSprite.transform.position);
 
             Vector3 pos = transform.position;
@@ -44,11 +57,9 @@ public class FollowCam : MonoBehaviour
             {
                 pos.y -= dBound - spriteLoc.y;
             }
-            else if (spriteLoc.y > uBound)
-            {
+            else if (spriteLoc.y > uBound) {
                 pos.y += spriteLoc.y - uBound;
             }
-
             pos = Vector3.Lerp(transform.position, pos, easing);
 
             transform.position = pos;

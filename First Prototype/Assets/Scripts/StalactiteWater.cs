@@ -15,7 +15,10 @@ public class StalactiteWater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(transform.position.y < -100) {
+            water.SetActive(false);
+            s.canDrip = true;
+        } 
     }
      void OnCollisionEnter2D(Collision2D col)
     {

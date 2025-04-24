@@ -1,9 +1,7 @@
 using UnityEngine;
 
 [ExecuteInEditMode]
-public class ErodableCollectionParent : MonoBehaviour
-{
-    
+public class ErodableCollectionParent : MonoBehaviour {
     [SerializeField] GameObject[] shapes;
     [SerializeField] float granularity;
     [SerializeField] float seed;
@@ -18,46 +16,6 @@ public class ErodableCollectionParent : MonoBehaviour
         for(int i = 0; i < shapes.Length; i++) {
             shapeMem[i] = shapes[i].transform.position;
         }
-        /*
-        if(!Application.isPlaying) {
-            foreach(GameObject shape in shapes) {
-                Texture2D rocks = new Texture2D(textureSize, textureSize);
-                Texture2D voronoi = new Texture2D(textureSize, textureSize);
-                var points = generatePoints(shape);
-                var transparencyList = new float[points.Length];
-                float xOffset = shape.transform.position.x - shape.transform.localScale.x / pixelsPerUnit;
-                float yOffset = shape.transform.position.y - shape.transform.localScale.y / pixelsPerUnit;
-                Debug.Log(new Vector2(xOffset, yOffset));
-
-                for (int x = 0; x < textureSize; x++) {
-                    for (int y = 0; y < textureSize; y++) {
-                        float leastDist = shape.transform.localScale.x * sqrt2;
-                        float closest = -1;
-                        for (int i = 0; i < points.Length; i++) {
-                            float dist = distanceApproximation(((float) x) / pixelsPerUnit + xOffset, ((float) y) / pixelsPerUnit + yOffset, points[i]);
-                            if(dist < leastDist) {
-                                leastDist = dist;
-                                closest = i;
-                            }
-                        }
-                        if(closest != -1) {
-                            rocks.SetPixel(x, y, new Color(leastDist / (textureSize * sqrt2), leastDist / (textureSize * sqrt2), leastDist / (textureSize * sqrt2), 1));
-                            voronoi.SetPixel(x, y, new Color(closest / points.Length, closest / points.Length, closest / points.Length, 1));
-                        } else {
-                            rocks.SetPixel(x, y, new Color(1,0,1,0.5f));
-                            voronoi.SetPixel(x, y, new Color(1,0,1,0.5f));
-                        }
-                    }
-                }
-                Sprite gizmo = Sprite.Create(voronoi, 
-                    new Rect((int) ((textureSize / 2) - (shape.transform.localScale.x * pixelsPerUnit) / 4), (int) (textureSize / 2) - (shape.transform.localScale.y * pixelsPerUnit) / 4, shape.transform.localScale.x * pixelsPerUnit / 2, shape.transform.localScale.y * pixelsPerUnit / 2), 
-                    new Vector2((int) (textureSize / 2), (int) (textureSize / 2)),
-                    pixelsPerUnit);
-                shape.GetComponent<SpriteRenderer>().sprite = gizmo;
-                shape.GetComponent<ErodableCollection>().Rocks = rocks;
-                shape.GetComponent<ErodableCollection>().Voronoi = voronoi;
-            }
-        }*/
     }
 
     // Update is called once per frame
@@ -99,11 +57,13 @@ public class ErodableCollectionParent : MonoBehaviour
                             }
                         }
                     }
+                    rocks.filterMode = FilterMode.Point;
                     rocks.Apply();
+                    voronoi.filterMode = FilterMode.Point;
                     voronoi.Apply();
                     shape.GetComponent<ErodableCollection>().Rocks = rocks;
                     shape.GetComponent<ErodableCollection>().Voronoi = voronoi;
-                    Sprite gizmo = Sprite.Create(rocks, 
+                    Sprite gizmo = Sprite.Create(voronoi, 
                         new Rect(0, 0, shape.transform.localScale.x * pixelspu, shape.transform.localScale.y * pixelspu), 
                         new Vector2(0.5f, 0.5f),
                         pixelsPerUnit * shape.transform.localScale.x);
@@ -115,34 +75,6 @@ public class ErodableCollectionParent : MonoBehaviour
                 }
             }
         }
-        
-        
-        /*if(!(Application.isPlaying || shape.transform.position == shapeMem)) {
-
-            
-            for(int i = 0; i < transform.childCount; i++) {
-                DestroyImmediate(transform.GetChild(i).gameObject);
-            }
-            
-            float left = (shape.transform.position.x - shape.transform.localScale.x) - (shape.transform.position.x - shape.transform.localScale.x) % granularity;
-            float right = (shape.transform.position.x + shape.transform.localScale.x) - (shape.transform.position.x + shape.transform.localScale.x) % granularity;
-            
-            float bottom = (shape.transform.position.y - shape.transform.localScale.y) - (shape.transform.position.y - shape.transform.localScale.y) % granularity;
-            float top = (shape.transform.position.y + shape.transform.localScale.y) - (shape.transform.position.y + shape.transform.localScale.y) % granularity;
-            
-            for(float x = left; x <= right; x += granularity) {
-                for(float y = bottom; y <= top; y += granularity) {
-                    Vector2 point = GetOffset((int)(x * 100), (int)(y * 100), (uint)(int)(seed));
-                    GameObject garp = Instantiate(shape);
-                    garp.transform.position = new Vector3(x + point.x, y + point.y, 0);
-                    garp.transform.localScale = new Vector3(granularity / 3, granularity / 3, 1);
-                    garp.transform.SetParent(transform, true);
-                    SpriteRenderer meow = garp.GetComponent<SpriteRenderer>(); 
-                    meow.color = new Color((x - left) / (right - left), (y - bottom) / (top - bottom), 0, 1);
-                }
-            }
-        }*/
-        //shapeMem = shape.transform.position;
     }
 
     public static uint Hash2D(int x, int y, uint seed)
