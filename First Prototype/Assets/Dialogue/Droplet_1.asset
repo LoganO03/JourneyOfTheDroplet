@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9300cdd1a21ad44ba3fb44ddb8e9e37, type: 3}
   m_Name: Droplet_1
   m_EditorClassIdentifier: 
-  dialogue: []
+  dialogue:
+  - Hey! I bet you're wondering about that stalactite up there
+  - Well, I actually came from one!
+  - When water like us seep through the earth, we can help form the stalactities!
+  - It's still dripping from the storm that just came through the area...
