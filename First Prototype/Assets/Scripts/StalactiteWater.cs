@@ -24,10 +24,9 @@ public class StalactiteWater : MonoBehaviour
     {
         //Debug.Log("" + col.gameObject);
         
-        Destroy(water);
+        water.SetActive(false);
         s.canDrip = true;
         
-        //water.SetActive(false);
         
 
 

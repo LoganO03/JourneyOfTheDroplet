@@ -17,11 +17,15 @@ public class WaterPickup : MonoBehaviour
     void OnTriggerStay2D (Collider2D other) {
         if(other.gameObject.layer == 6) { // player layer
             float suckSpeed = 2 * Time.deltaTime; //other.transform.localScale.x / transform.localScale.x;
-            GameManager.Instance.playerWater += transform.localScale.x * suckSpeed;
-            transform.localScale -= transform.localScale * suckSpeed;
+            float suckWater = (Mathf.Pow(transform.localScale.x, 3) * 4 * Mathf.PI) / 3 * suckSpeed;
+            GameManager.Instance.playerWater += suckWater;
+            transform.localScale = new Vector3(suckWater, suckWater, 1);
         }
         if(other.gameObject.layer == 4) { // water projectile layer
-            transform.localScale += other.transform.localScale;
+            float otherVolume = (Mathf.Pow(other.transform.localScale.x, 3) * 4 * Mathf.PI) / 3;
+            float thisVolume = (Mathf.Pow(transform.localScale.x, 3) * 4  * Mathf.PI) / 3;
+            float newRadius = (Mathf.Pow(thisVolume + otherVolume, 0.33333333f) * 3) / (Mathf.PI * 4);
+            transform.localScale = new Vector3(newRadius, newRadius, 1);
             other.gameObject.SetActive(false);
         }
         if(other.gameObject.layer == 8) { // pickup layer

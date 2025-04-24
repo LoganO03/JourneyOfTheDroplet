@@ -20,7 +20,7 @@ public class StalactiteDrip : MonoBehaviour
     void Start()
     {
 
-        startSize = transform.localScale;
+        startSize = new Vector3(waterDrop.transform.localScale.x, waterDrop.transform.localScale.y, waterDrop.transform.localScale.z);
         waterDrop.SetActive(false);
         stalactite = GetComponent<Rigidbody2D>();
         
@@ -42,7 +42,7 @@ public class StalactiteDrip : MonoBehaviour
         waterDrop.transform.position = spawn;
 
         waterDrop.GetComponent<Rigidbody2D>().linearVelocity = new Vector3(0, 0, 0);
-        transform.localScale = startSize;
+        waterDrop.transform.localScale = startSize;
 
         waterDrop.SetActive(true);
         

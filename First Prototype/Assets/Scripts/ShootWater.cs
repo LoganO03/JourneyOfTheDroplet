@@ -63,7 +63,8 @@ public class ShootWater : MonoBehaviour
         GameObject w = waterList[pos];
         w.SetActive(false);
         w.transform.position = spawn;
-        w.transform.localScale = waterShot.transform.localScale * (Mathf.Min(GameManager.Instance.playerWater, waterVolume) / waterVolume);
+        float radius = (Mathf.Pow(Mathf.Min(GameManager.Instance.playerWater, waterVolume), 0.33333f) * 3) / (Mathf.PI * 4);
+        w.transform.localScale = new Vector3(radius, radius, 0);
         w.SetActive(true);
         waterBody = w.GetComponent<Rigidbody2D>();
         waterBody.totalForce = new Vector2(0,0);
