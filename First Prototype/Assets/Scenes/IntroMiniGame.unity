@@ -3836,6 +3836,7 @@ GameObject:
   - component: {fileID: 1675342463}
   - component: {fileID: 1675342462}
   - component: {fileID: 1675342465}
+  - component: {fileID: 1675342467}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -3898,14 +3899,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1675342461
-Transform:
+--- !u!224 &1675342461
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1675342459}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -3913,6 +3913,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1, y: 1}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!50 &1675342462
 Rigidbody2D:
   serializedVersion: 5
@@ -4004,6 +4009,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scaleSpeed: 5
+--- !u!222 &1675342467
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675342459}
+  m_CullTransparentMesh: 1
 --- !u!4 &1690827682 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2035710461224708643, guid: 25513db99a86b4b45bf8beefe414b5b3, type: 3}
@@ -4950,7 +4963,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2035710461224708643, guid: 25513db99a86b4b45bf8beefe414b5b3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.452556
+      value: 2.36
       objectReference: {fileID: 0}
     - target: {fileID: 2035710461224708643, guid: 25513db99a86b4b45bf8beefe414b5b3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4999,7 +5012,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 507448940}
   - {fileID: 1136582637}
-  - {fileID: 1675342461}
   - {fileID: 262245303}
   - {fileID: 1976681058}
   - {fileID: 819481093}
+  - {fileID: 1675342461}
