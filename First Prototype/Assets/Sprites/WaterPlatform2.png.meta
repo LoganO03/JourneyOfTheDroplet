@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: ea15396eea2dd364aaf69d224cf1101a
+=======
+guid: 158e8ccd598253d459035c2f46158731
+>>>>>>> 8e84af387755a75e89a32c106e2d85a36e88b49c
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -96,6 +100,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+<<<<<<< HEAD
   - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
@@ -109,6 +114,8 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+=======
+>>>>>>> 8e84af387755a75e89a32c106e2d85a36e88b49c
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -147,7 +154,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
+<<<<<<< HEAD
     nameFileIdTable: {}
+=======
+    nameFileIdTable:
+      WaterPlatform2_0: -1680276938647673266
+>>>>>>> 8e84af387755a75e89a32c106e2d85a36e88b49c
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

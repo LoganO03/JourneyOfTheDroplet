@@ -2,44 +2,18 @@ using UnityEngine;
 
 public class TopDownMovement : MonoBehaviour {
 
-    private Rigidbody2D rigidbody2D;
-    float horizontal;
-    float vertical;
-    private Vector2 input;
-    Animator animator;
-    private Vector2 lastMoveDirection;
-    public AudioSource walkSource;
-    
-
-    public float runSpeed = 5f;
-    void Start() {
-        rigidbody2D = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-    }
-
+    public Camera cam;
+    public float speed = 2f;
     void Update() {
-        float moveX = horizontal = Input.GetAxisRaw("Horizontal");
-        float moveY = vertical = Input.GetAxisRaw("Vertical");
+        Vector2 input= Input.mousePosition;
 
-        if((moveX == 0 && moveY == 0) && horizontal != 0 || vertical != 0){
-            lastMoveDirection = input;
-        }
+        Vector3 worldInput = cam.ScreenToWorldPoint(input);
 
-        
-        input.x = Input.GetAxisRaw("Horizontal");
-        input.y = Input.GetAxisRaw("Vertical");
+        Vector3 newPosition = Vector3.MoveTowards(transform.position, worldInput, speed * Time.deltaTime);
 
-        input.Normalize();
+        newPosition.z = transform.position.z;
 
-        // animator.SetFloat("MoveX", input.x);
-        // animator.SetFloat("MoveY", input.y);
-        // animator.SetFloat("MoveMagnitude", input.magnitude);
-        // animator.SetFloat("LastMoveX", lastMoveDirection.x);
-        // animator.SetFloat("LastMoveY", lastMoveDirection.y);
-    }
-
-    void FixedUpdate() {
-        rigidbody2D.linearVelocity = input * runSpeed;
+        transform.position = newPosition;
     }
 
 }

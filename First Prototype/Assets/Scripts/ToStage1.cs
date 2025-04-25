@@ -6,7 +6,7 @@ public class ToStage1 : MonoBehaviour
     public void ReactToClick() {
         Debug.Log("I've been clicked");
         // if(GameManager.Instance.endLevel1 == false){
-            Initiate.Fade("Stage1", Color.black, 1.0f);
+            Initiate.Fade("IntroMiniGame", Color.black, 1.0f);
         // }
         
     }
