@@ -15,7 +15,7 @@ public class StalactiteWater : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.y < -100) {
+        if(transform.position.y < -60) {
             water.SetActive(false);
             s.canDrip = true;
         } 
