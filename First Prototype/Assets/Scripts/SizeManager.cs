@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class SizeManager : MonoBehaviour
@@ -6,6 +7,7 @@ public class SizeManager : MonoBehaviour
     public float scaleSpeed = 5f;
 
     private int destroyedCount = 0;
+
 
     void OnTriggerEnter2D(Collider2D other){
         currentScale += 0.2f;
