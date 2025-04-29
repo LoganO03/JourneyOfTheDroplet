@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Video;
 
 public class Tutorial : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class Tutorial : MonoBehaviour
     public int sec;
 
     public ToggleFade toggle;
+
+    public VideoPlayer video;
 
     void Start()
     {
@@ -25,6 +28,7 @@ public class Tutorial : MonoBehaviour
     IEnumerator DelayFadeIn(){
         yield return new WaitForSeconds(3);
         toggle.ToggleActive();
+        video.Play();
     }
 
     IEnumerator DelayFadeOut()
@@ -32,6 +36,7 @@ public class Tutorial : MonoBehaviour
         //Wait for the specified delay time before continuing.
         yield return new WaitForSeconds(sec);
         toggle.ToggleActive();
+        video.Pause();
     }
 
 
