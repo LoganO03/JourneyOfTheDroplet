@@ -20,7 +20,7 @@ public class SizeManager : MonoBehaviour
 
         if (destroyedCount >= 20)
         {
-            Initiate.Fade("Stage1", Color.black, 1.0f);
+            Initiate.Fade("Beginning", Color.black, 1.0f);
         }
    }
 
