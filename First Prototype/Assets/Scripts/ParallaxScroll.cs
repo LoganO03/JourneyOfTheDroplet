@@ -12,6 +12,7 @@ public class ParallaxScroll : MonoBehaviour
     public Sprite sprite;
 
     private Transform cameraTransform;
+    private Vector3 oldTransform;
 
     private GameObject emptyGameObject;
     private Transform[] layers;
@@ -20,6 +21,7 @@ public class ParallaxScroll : MonoBehaviour
     private int rightIndex;
 
     private float lastCameraX;
+    private float lastCameraY;
 
 
     void Awake()
@@ -30,7 +32,9 @@ public class ParallaxScroll : MonoBehaviour
     public void Setup()
     {
         cameraTransform = Camera.main.transform;
+        oldTransform = cameraTransform.localScale;
         lastCameraX = cameraTransform.position.x;
+        lastCameraY = cameraTransform.position.y;
         layers = new Transform[3];
 
         for (int i = 0; i < 3; i++)
@@ -77,9 +81,14 @@ public class ParallaxScroll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.localScale += (cameraTransform.localScale - oldTransform) * parallaxSpeed;
+        oldTransform = cameraTransform.localScale;
         float deltaX = cameraTransform.position.x - lastCameraX;
         transform.position += Vector3.right * (deltaX * parallaxSpeed);
         lastCameraX = cameraTransform.position.x;
+        float deltaY = cameraTransform.position.y - lastCameraY;
+        transform.position += Vector3.up * (deltaY * parallaxSpeed) * 0; // get rid of 0 for vertical parrallax
+        lastCameraY = cameraTransform.position.y;
 
         if (cameraTransform.position.x < (layers[leftIndex].transform.position.x + viewZone))
         {

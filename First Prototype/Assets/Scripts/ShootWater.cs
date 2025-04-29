@@ -18,6 +18,7 @@ public class ShootWater : MonoBehaviour
 
     [SerializeField] float waterVolume;
     [SerializeField] float minCharacterScale;
+    [SerializeField] float drainRate;
 
     public int moveForce;
 
@@ -47,7 +48,7 @@ public class ShootWater : MonoBehaviour
         {
             if (!pausepanel.activeInHierarchy && GameManager.Instance.playerWater > 0.001f){
                 Shoot();
-                GameManager.Instance.playerWater -= Mathf.Min(waterVolume, GameManager.Instance.playerWater);
+                GameManager.Instance.playerWater -= Mathf.Min(waterVolume, GameManager.Instance.playerWater) * drainRate;
             }
             //Debug.Log("Shooting");
         }
@@ -64,7 +65,7 @@ public class ShootWater : MonoBehaviour
         w.SetActive(false);
         w.transform.position = spawn;
         float radius = (Mathf.Pow(Mathf.Min(GameManager.Instance.playerWater, waterVolume), 0.33333f) * 3) / (Mathf.PI * 4);
-        w.transform.localScale = new Vector3(radius, radius, 0);
+        w.transform.localScale = new Vector3(radius, radius, 0.1f);
         w.SetActive(true);
         waterBody = w.GetComponent<Rigidbody2D>();
         waterBody.totalForce = new Vector2(0,0);
