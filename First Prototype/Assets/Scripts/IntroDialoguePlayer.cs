@@ -26,7 +26,7 @@ public class DialoguePlayer : MonoBehaviour
         if (!dialogueActive)
             return;
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             NextLine();
         }
