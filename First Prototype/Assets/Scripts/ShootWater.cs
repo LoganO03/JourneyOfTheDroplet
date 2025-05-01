@@ -48,7 +48,7 @@ public class ShootWater : MonoBehaviour
         {
             if (!pausepanel.activeInHierarchy && GameManager.Instance.playerWater > 0.001f){
                 Shoot();
-                GameManager.Instance.playerWater -= Mathf.Min(waterVolume, GameManager.Instance.playerWater) * drainRate;
+                GameManager.Instance.playerWater -= Mathf.Min(waterVolume, GameManager.Instance.playerWater) * drainRate * player.transform.localScale.x;
             }
             //Debug.Log("Shooting");
         }
@@ -64,8 +64,10 @@ public class ShootWater : MonoBehaviour
         GameObject w = waterList[pos];
         w.SetActive(false);
         w.transform.position = spawn;
-        float radius = (Mathf.Pow(Mathf.Min(GameManager.Instance.playerWater, waterVolume), 0.33333f) * 3) / (Mathf.PI * 4);
-        w.transform.localScale = new Vector3(radius, radius, 0.1f);
+        float volume = Mathf.Min(GameManager.Instance.playerWater, waterVolume) / drainRate;
+        float radius = Mathf.Pow(volume / Mathf.PI, 0.5f);
+
+        w.transform.localScale = new Vector3(radius * player.transform.localScale.x, radius * player.transform.localScale.y, volume / (radius * player.transform.localScale.y * radius * player.transform.localScale.y * Mathf.PI));
         w.SetActive(true);
         waterBody = w.GetComponent<Rigidbody2D>();
         waterBody.totalForce = new Vector2(0,0);

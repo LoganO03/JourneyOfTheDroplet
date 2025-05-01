@@ -29,7 +29,7 @@ public class FollowCam : MonoBehaviour
         if (playerSprite)
         {
             Vector3 deviance = Camera.main.WorldToViewportPoint(playerSprite.transform.position);
-            Debug.Log(deviance);
+            //Debug.Log(deviance);
             if (Mathf.Abs(deviance.x - 0.5f) < 0.375f && Mathf.Abs(deviance.y - 0.5f) < 0.375f) {
                 GetComponent<Camera>().orthographicSize += (Mathf.Max(playerSprite.transform.localScale.x * 8, 1) - GetComponent<Camera>().orthographicSize) * scaleEasing;
                 transform.localScale += (playerSprite.transform.localScale - transform.localScale) * scaleEasing;

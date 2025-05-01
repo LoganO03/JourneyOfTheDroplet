@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] CounterArray NumberInterface;
 
     [SerializeField] public float playerWater = 0;
+    [SerializeField] public float maxWater;
 
     public static event Action OnDialogueStarted;
     public static event Action OnDialogueEnded;
@@ -119,6 +120,10 @@ IEnumerator TypeTextUncapped(string line)
     // Update is called once per frame
     void Update()
     {
+        if(playerWater > maxWater) {
+            playerWater = maxWater;
+        }
         NumberInterface.goalNumber = playerWater;
+
     }
 }

@@ -157,4 +157,14 @@ public class CounterDigit : MonoBehaviour
         float angle = maxDegreeDiff / Mathf.Pow(10, digitIndex) * Mathf.Sign(rotations);
         wheel.transform.rotation = counter.transformPweaseOwO().rotation * Quaternion.AngleAxis(angle, Vector3.right);
     }
+
+    public void disappear() {
+        counter.disappear();
+        counter.gameObject.SetActive(false);
+    }
+
+    public void appear() {
+        counter.gameObject.SetActive(true);
+        counter.appear();
+    }
 }

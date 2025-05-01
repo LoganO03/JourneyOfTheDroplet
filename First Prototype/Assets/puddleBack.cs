@@ -23,7 +23,7 @@ public class puddleBack : MonoBehaviour
         if(other.gameObject.name == "water") { // pickup layer
             collidingWithPuddle = true;
         }
-        if(!collidingWithPuddle && (other.gameObject.layer == 4 || other.gameObject.layer == 8)) { 
+        else if(collidingWithPuddle && (other.gameObject.layer == 4 || other.gameObject.layer == 8)) { 
             water.getFilld(other);
         }
     }
