@@ -81,8 +81,8 @@ public class ParallaxScroll : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.localScale += (cameraTransform.localScale - oldTransform) * parallaxSpeed;
-        oldTransform = cameraTransform.localScale;
+        //transform.localScale += (cameraTransform.localScale - oldTransform) * parallaxSpeed;
+        //oldTransform = cameraTransform.localScale;
         float deltaX = cameraTransform.position.x - lastCameraX;
         transform.position += Vector3.right * (deltaX * parallaxSpeed);
         lastCameraX = cameraTransform.position.x;
