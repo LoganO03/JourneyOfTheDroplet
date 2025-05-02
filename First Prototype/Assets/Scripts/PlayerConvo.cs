@@ -34,6 +34,7 @@ public class PlayerConvo : MonoBehaviour
 
     void Prompt(){
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, talkDistance, Vector2.up, 0, LayerMask.GetMask("NPC"));
+        if(!pausepanel.activeInHierarchy){
             if (hit)
             {
                 Debug.Log("Hit Something!!" + hit.collider.gameObject.name);
@@ -50,6 +51,9 @@ public class PlayerConvo : MonoBehaviour
                 prompt.SetActive(false);
             }
 
+        }
+        else{prompt.SetActive(false);
+        }
     }
 
     void Interact()
