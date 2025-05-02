@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Droplet_1
   m_EditorClassIdentifier: 
   dialogue:
-  - Hey! I bet you're wondering about that stalactite up there
+  - Hey! I bet you're wondering about that stalactite up there.
   - Well, I actually came from one!
   - When water like us seep through the earth, we can help form the stalactities!
   - It's still dripping from the storm that just came through the area...
