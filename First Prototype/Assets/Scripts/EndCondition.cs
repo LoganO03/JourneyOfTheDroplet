@@ -22,9 +22,9 @@ public class EndCondition : MonoBehaviour
 
     public void endLevelOne(){
         if(scene == 1){
-            if(player.transform.position.x >= 97.72 && player.transform.position.y <=-55.26){
+            if(player.transform.position.x >= 96 && player.transform.position.y <= -53){
             Rigidbody2D body = player.GetComponent<Rigidbody2D>();
-            body.AddForce(new UnityEngine.Vector2(5,5));
+            body.AddForce(new UnityEngine.Vector2(10,10));
             GameManager.Instance.endLevel1 = true;
             Initiate.Fade("Stage2", Color.black, 1.0f);
             }
