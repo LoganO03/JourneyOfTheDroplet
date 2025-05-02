@@ -4,6 +4,8 @@ using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    
     [SerializeField] Transform groundCapsule;
     private Rigidbody2D rb2D;
     private SpriteRenderer spriteRenderer;
@@ -56,6 +58,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
+        if(GameManager.Instance.canMove){
         horizontal = Input.GetAxisRaw("Horizontal");
         if (horizontal < 0 && m_Grounded) {
             spriteRenderer.flipX = true;
@@ -79,9 +82,11 @@ public class PlayerMovement : MonoBehaviour
             m_Grounded = false;
         }
     }
+    }
 
     void FixedUpdate()
     {
+        if(GameManager.Instance.canMove){
         rb2D.mass = Mathf.Max(GameManager.Instance.playerWater, transform.localScale.x);
         var dtime = Time.fixedTime - oldtime;
         float oldvx;
@@ -155,6 +160,7 @@ public class PlayerMovement : MonoBehaviour
 
         oldHorizontal = Mathf.Ceil(Mathf.Abs(horizontal)) * Mathf.Sign(horizontal);
 	}
+    }
 
 
     public void Landed() {

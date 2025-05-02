@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager Instance { get; private set; }
    
-
+    public bool canMove = true;
     [SerializeField] TextMeshProUGUI dialogueText;
     [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] GameObject dialoguePanel;
