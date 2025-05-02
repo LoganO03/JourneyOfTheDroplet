@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class TopDownMovement : MonoBehaviour {
 
+// The top down movement for the Intro Condensation Minigame
     public Camera cam;
     public float speed = 2f;
     void Update() {
