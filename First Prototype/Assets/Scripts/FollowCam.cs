@@ -7,6 +7,9 @@ public class FollowCam : MonoBehaviour
     public float boundaryPercent;
     public float easing;
     public float scaleEasing;
+    
+    private Rigidbody2D rb2d;
+    private Vector3 lastPosition;
 
     private float lBound;
     private float rBound;
@@ -16,6 +19,8 @@ public class FollowCam : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        rb2d = playerSprite.GetComponent<Rigidbody2D>();
+        lastPosition = playerSprite.transform.position;
         lBound = boundaryPercent * Camera.main.pixelWidth;
         rBound = Camera.main.pixelWidth - lBound;
         dBound = boundaryPercent * Camera.main.pixelHeight;
@@ -23,21 +28,20 @@ public class FollowCam : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-
-        if (playerSprite)
+        if (playerSprite && (playerSprite.transform.position != lastPosition || (rb2d.linearVelocity.x == 0 && rb2d.linearVelocity.y == 0)))
         {
             Vector3 deviance = Camera.main.WorldToViewportPoint(playerSprite.transform.position);
             //Debug.Log(deviance);
             if (Mathf.Abs(deviance.x - 0.5f) < 0.375f && Mathf.Abs(deviance.y - 0.5f) < 0.375f) {
-                GetComponent<Camera>().orthographicSize += (Mathf.Max(playerSprite.transform.localScale.x * 8, 1) - GetComponent<Camera>().orthographicSize) * scaleEasing;
-                transform.localScale += (playerSprite.transform.localScale - transform.localScale) * scaleEasing;
+                GetComponent<Camera>().orthographicSize += (Mathf.Max(playerSprite.transform.localScale.x * 8, 1) - GetComponent<Camera>().orthographicSize) * scaleEasing * Time.deltaTime;
+                transform.localScale += (playerSprite.transform.localScale - transform.localScale) * scaleEasing * Time.deltaTime;
             } else {
                 float scaleAmount = Mathf.Max(Mathf.Abs(deviance.x - 0.5f) + 1.125f, Mathf.Abs(deviance.x - 0.5f) + 1.125f);
                 
-                GetComponent<Camera>().orthographicSize += (GetComponent<Camera>().orthographicSize * scaleAmount - GetComponent<Camera>().orthographicSize) * scaleEasing;
-                transform.localScale += (transform.localScale * scaleAmount - transform.localScale) * scaleEasing;
+                GetComponent<Camera>().orthographicSize += (GetComponent<Camera>().orthographicSize * scaleAmount - GetComponent<Camera>().orthographicSize) * scaleEasing * Time.deltaTime;
+                transform.localScale += (transform.localScale * scaleAmount - transform.localScale) * scaleEasing * Time.deltaTime;
             }
 
             Vector3 spriteLoc = Camera.main.WorldToScreenPoint(playerSprite.transform.position);
@@ -60,9 +64,10 @@ public class FollowCam : MonoBehaviour
             else if (spriteLoc.y > uBound) {
                 pos.y += spriteLoc.y - uBound;
             }
-            pos = Vector3.Lerp(transform.position, pos, easing);
+            pos = (Vector3.Lerp(transform.position, pos, easing) - transform.position) * Time.deltaTime;
 
-            transform.position = pos;
+            transform.position += pos;
         }
+        lastPosition = playerSprite.transform.position;
     }
 }

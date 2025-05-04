@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public float playerWater = 0;
     [SerializeField] public float maxWater;
 
+
     public static event Action OnDialogueStarted;
     public static event Action OnDialogueEnded;
     bool skipLineTriggered;

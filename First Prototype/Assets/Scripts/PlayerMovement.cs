@@ -17,6 +17,11 @@ public class PlayerMovement : MonoBehaviour
     public float deceltime;
     public float airAccel;
     public float jumpForgiveness;
+
+    public float scaleOfMaximumSpeediness;
+    public float minMaximumSpeed;
+    private float targetxVelocity;
+    private float oldScaleFactor;
     
     private bool m_Grounded;
 
@@ -42,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
+        oldScaleFactor = scaleFactor();
         rb2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
@@ -86,7 +92,6 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(GameManager.Instance.canMove){
         rb2D.mass = Mathf.Max(GameManager.Instance.playerWater, transform.localScale.x);
         var dtime = Time.fixedTime - oldtime;
         float oldvx;
@@ -99,47 +104,52 @@ public class PlayerMovement : MonoBehaviour
         oldx = transform.position.x;
         oldtime = Time.fixedTime;
 
-        if(oldHorizontal != Mathf.Ceil(Mathf.Abs(horizontal)) * Mathf.Sign(horizontal) || Mathf.Abs(discrepancyx) < 0.5 || resetFlag) {
+        if(GameManager.Instance.canMove){
+            if(oldHorizontal != Mathf.Ceil(Mathf.Abs(horizontal)) * Mathf.Sign(horizontal) || Mathf.Abs(discrepancyx) < 0.5 || resetFlag) {
 
-            resetFlag = false;
+                resetFlag = false;
 
-            start = rb2D.linearVelocity.x;
-            diff = maxSpeed * horizontal - start;
-            float speedPercent;
-            if(horizontal == 0f) speedPercent = Mathf.Abs(rb2D.linearVelocity.x / maxSpeed);
-            else speedPercent = Mathf.Abs((maxSpeed * horizontal - rb2D.linearVelocity.x) / maxSpeed * horizontal);
-            if(horizontal == 0f) time = speedPercent * deceltime;
-            else time = speedPercent * acceltime;
-            if(time == 0f) rate = 0;
-            else rate = 1 / time;
-            progress = 0;
+                start = rb2D.linearVelocity.x * scaleFactor() / oldScaleFactor;
+                diff = maxSpeed * horizontal - start;
+                float speedPercent;
+                if(horizontal == 0f) speedPercent = Mathf.Abs(rb2D.linearVelocity.x / maxSpeed);
+                else speedPercent = Mathf.Abs((maxSpeed * horizontal - rb2D.linearVelocity.x) / maxSpeed * horizontal);
+                if(horizontal == 0f) time = speedPercent * deceltime;
+                else time = speedPercent * acceltime;
+                if(time == 0f) rate = 0;
+                else rate = 1 / time;
+                progress = 0;
+            }
+            if(progress < 1f) {
+                progress = progress + rate * Time.deltaTime * (m_Grounded ? 1 : airAccel);
+                float x;
+                if(progress >= 1f) x = 1;
+                else if (progress * progress == 0f) x = 0;
+                else x = 1 + (Mathf.Sqrt(1 - ((1 - progress) * (1 - progress))) - 1);
+                if(float.IsNaN(x)) Debug.Log("");
+                float newVelocity = start + x * diff;
+                expectedAcceleration = (newVelocity - rb2D.linearVelocity.x);
+                rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x * (scaleFactor() / oldScaleFactor) + expectedAcceleration * scaleFactor(), rb2D.linearVelocity.y);
+                if(time == 0f) rate = 0;
+                else rate = 1 / time;
+            } else if (rb2D.linearVelocity.x != maxSpeed * horizontal * scaleFactor()) {
+                Debug.Log("resetting acceleration");
+                resetFlag = true;
+            }
+        } else {
+            rb2D.linearVelocity = new Vector2(0f, rb2D.linearVelocity.y);
         }
-        if(progress < 1f) {
-            progress = progress + rate * Time.deltaTime * (m_Grounded ? 1 : airAccel);
-            float x;
-            if(progress >= 1f) x = 1;
-            else if (progress * progress == 0f) x = 0;
-            else x = 1 + (Mathf.Sqrt(1 - ((1 - progress) * (1 - progress))) - 1);
-            if(float.IsNaN(x)) Debug.Log("");
-            float newVelocity = start + x * diff;
-            expectedAcceleration = (newVelocity - rb2D.linearVelocity.x);
-            rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x + expectedAcceleration, rb2D.linearVelocity.y);
-            if(time == 0f) rate = 0;
-            else rate = 1 / time;
-        } else if (rb2D.linearVelocity.x != maxSpeed * horizontal) {
-            resetFlag = true;
-        }
 
 
-		bool wasGrounded = m_Grounded;
+        bool wasGrounded = m_Grounded;
 
         m_Grounded = false;
 
-		// The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
-		// This can be done using layers instead but Sample Assets will not overwrite your project settings.
-		Collider2D[] colliders = Physics2D.OverlapCapsuleAll(groundCapsule.position, new Vector3(transform.localScale.x * groundCapsule.localPosition.x, transform.localScale.z * groundCapsule.localPosition.y, transform.localScale.z * groundCapsule.localPosition.z), CapsuleDirection2D.Horizontal, groundCapsule.rotation.eulerAngles.z);
-		for (int i = 0; i < colliders.Length; i++)
-		{
+        // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
+        // This can be done using layers instead but Sample Assets will not overwrite your project settings.
+        Collider2D[] colliders = Physics2D.OverlapCapsuleAll(groundCapsule.position, new Vector3(transform.localScale.x * groundCapsule.localPosition.x, transform.localScale.z * groundCapsule.localPosition.y, transform.localScale.z * groundCapsule.localPosition.z), CapsuleDirection2D.Horizontal, groundCapsule.rotation.eulerAngles.z);
+        for (int i = 0; i < colliders.Length; i++)
+        {
             if (colliders[i].gameObject != gameObject)
             {
                 m_Grounded = true;
@@ -159,11 +169,15 @@ public class PlayerMovement : MonoBehaviour
         oldy = transform.position.y;
 
         oldHorizontal = Mathf.Ceil(Mathf.Abs(horizontal)) * Mathf.Sign(horizontal);
-	}
+        oldScaleFactor = scaleFactor();
+        
     }
 
 
     public void Landed() {
         animator.SetBool("grounded", true);
+    }
+    public float scaleFactor() {
+        return (1 / Mathf.Exp(Mathf.Abs(transform.localScale.x - scaleOfMaximumSpeediness))) * (1 - minMaximumSpeed) + minMaximumSpeed;
     }
 }
