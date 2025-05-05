@@ -58,7 +58,7 @@ public class CounterArray : MonoBehaviour
             prevGoal = goalNumber;
             goalNumber += Time.deltaTime;
         } else {
-            NumberPanel.text = $"{goalNumber}";
+            NumberPanel.text = $"{goalNumber:0.00}";
         }
     }
 }
