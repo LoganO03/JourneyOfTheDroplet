@@ -29,7 +29,7 @@ public class PlayerConvo : MonoBehaviour
         }
     }
 
-    void PauseToggleActive(){
+    public void PauseToggleActive(){
         if (pausepanel.activeInHierarchy) {
             pausepanel.SetActive(false);
         }
