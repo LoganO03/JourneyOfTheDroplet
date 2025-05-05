@@ -66,6 +66,11 @@ public class PlayerMovement : MonoBehaviour
     void Update() {
         if(GameManager.Instance.canMove){
         horizontal = Input.GetAxisRaw("Horizontal");
+        if (horizontal != 0){
+            animator.SetBool("isRunning", true);
+        } else {
+            animator.SetBool("isRunning", false);
+        }
         if (horizontal < 0 && m_Grounded) {
             spriteRenderer.flipX = true;
             //transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);

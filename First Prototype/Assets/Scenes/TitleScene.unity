@@ -2810,7 +2810,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "ART Assets:\n- Level Design:\n  - https://kenney.nl/assets/pixel-platformer\n 
+  m_text: "Created By:\nAndrew Clark, Jory Fulmer, Jauss Favorite, Kate Jackson,
+    and Leigh Johnston\n\nART Assets:\n- Level Design:\n  - https://kenney.nl/assets/pixel-platformer\n 
     - https://kenney.nl/assets/pixel-platformer-farm-expansion"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a47ee0e8a85ae0845ac86d0ad9ad640e, type: 2}
@@ -2838,8 +2839,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 26
+  m_fontSizeBase: 26
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
