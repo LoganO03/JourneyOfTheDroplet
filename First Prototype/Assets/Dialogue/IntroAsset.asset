@@ -13,10 +13,15 @@ MonoBehaviour:
   m_Name: IntroAsset
   m_EditorClassIdentifier: 
   dialogue:
-  - This however is a different story.
-  - This is not just a story about water, or the planet.
+  - When condensation in the clouds get heavier, that condensation forms water droplets.
+  - Furthermore, when those droplets get too heavy, those droplets fall to the ground
+    as rain.
+  - Well, allow me to tell you a story about that rain.
+  - A very special story some might say...
+  - A story about more than just water, or the planet.
   - No, its something more unique than that...
   - This is a story of strength.
   - A story of self-acceptance in a world that's ever changing.
   - This is the story of one young adventurer, and their journey to learn where they
     belong.
+  - This is the Journey of the Droplet.
