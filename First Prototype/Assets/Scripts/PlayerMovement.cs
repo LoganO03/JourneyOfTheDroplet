@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
                 // 🔊 Play jump sound
                 if (jumpSound != null && audioSource != null)
                 {
-                    audioSource.PlayOneShot(jumpSound);
+                    audioSource.PlayOneShot(jumpSound, 0.25f);
                 }
             }
 
