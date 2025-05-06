@@ -1,7 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerConvo : MonoBehaviour
 {
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip talkSound;
     [SerializeField] float talkDistance = 2;
     bool inConversation;
 
@@ -81,7 +83,14 @@ public class PlayerConvo : MonoBehaviour
                 if (hit.collider.gameObject.TryGetComponent(out NPC npc))
                 {
                     GameManager.Instance.StartDialogue(npc.dialogueAsset.dialogue, npc.StartPosition, npc.npcName);
+
+                    // 🔊 Play talking sound
+                    if (audioSource != null && talkSound != null)
+                    {
+                        audioSource.PlayOneShot(talkSound);
+                    }
                 }
+
             }
         }
     }

@@ -1,12 +1,14 @@
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.Events;
 
 public class PlayerMovement : MonoBehaviour
 {
 
-    
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip jumpSound;
     [SerializeField] Transform groundCapsule;
     private Rigidbody2D rb2D;
     private SpriteRenderer spriteRenderer;
@@ -18,13 +20,14 @@ public class PlayerMovement : MonoBehaviour
     public float deceltime;
     public float airAccel;
     public float jumpForgiveness;
-    public AudioClip jumpSoundE;
+ 
 
     public float scaleOfMaximumSpeediness;
     public float minMaximumSpeed;
     private float targetxVelocity;
     private float oldScaleFactor;
-    
+  
+
     private bool m_Grounded;
 
 
@@ -82,17 +85,25 @@ public class PlayerMovement : MonoBehaviour
             //transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         }
         animator.SetFloat("RawHorizontal", horizontal);
-        if (Input.GetKeyDown("space") && animator.GetBool("grounded"))
-        {
-     
+            if(Input.GetKeyDown("space") && animator.GetBool("grounded"))
+{
                 rb2D.AddForce(Vector2.up * 500 * rb2D.mass);
-            if(rb2D.linearVelocity.y > 0.1f) {
-                rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, 0.1f);
+                if (rb2D.linearVelocity.y > 0.1f)
+                {
+                    rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, 0.1f);
+                }
+
+                animator.SetBool("grounded", false);
+                m_Grounded = false;
+
+                // 🔊 Play jump sound
+                if (jumpSound != null && audioSource != null)
+                {
+                    audioSource.PlayOneShot(jumpSound);
+                }
             }
-            animator.SetBool("grounded", false);
-            m_Grounded = false; 
-        }
-        if (animator.GetBool("grounded") && Mathf.Abs(rb2D.linearVelocity.y) > jumpForgiveness) {
+
+            if (animator.GetBool("grounded") && Mathf.Abs(rb2D.linearVelocity.y) > jumpForgiveness) {
             animator.SetBool("grounded", false);
             m_Grounded = false;
         }
