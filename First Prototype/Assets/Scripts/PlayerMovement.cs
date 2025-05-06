@@ -17,13 +17,16 @@ public class PlayerMovement : MonoBehaviour
     public float deceltime;
     public float airAccel;
     public float jumpForgiveness;
+    //public AudioClip jumpSoundE;
 
     public float scaleOfMaximumSpeediness;
     public float minMaximumSpeed;
     private float targetxVelocity;
     private float oldScaleFactor;
+    //private AudioSource audioSource;
     
     private bool m_Grounded;
+
 
     public UnityEvent OnLandEvent;
 
@@ -81,6 +84,7 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("RawHorizontal", horizontal);
         if (Input.GetKeyDown("space") && animator.GetBool("grounded"))
         {
+                //audioSource.PlayOneShot(jumpSoundE);
             rb2D.AddForce(Vector2.up * 500 * rb2D.mass);
             if(rb2D.linearVelocity.y > 0.1f) {
                 rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, 0.1f);
