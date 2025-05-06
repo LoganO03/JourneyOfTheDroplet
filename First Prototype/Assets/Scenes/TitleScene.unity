@@ -3118,7 +3118,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Created By:\nAndrew Clark, Jory Fulmer, Jauss Favorite, Kate Jackson,
     and Leigh Johnston\n\nART Assets:\n- Level Design:\n  - https://kenney.nl/assets/pixel-platformer\n 
-    - https://kenney.nl/assets/pixel-platformer-farm-expansion"
+    - https://kenney.nl/assets/pixel-platformer-farm-expansion\n\nAUDIO Assets: \n-
+    https://pixabay.com/sound-effects/sound-of-a-drop-of-water-131023/\n- https://pixabay.com/sound-effects/rain-and-little-storm-298087/\n-
+    https://pixabay.com/sound-effects/water-droplet-1-165637/"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a47ee0e8a85ae0845ac86d0ad9ad640e, type: 2}
   m_sharedMaterial: {fileID: 5589225488492564792, guid: a47ee0e8a85ae0845ac86d0ad9ad640e, type: 2}
