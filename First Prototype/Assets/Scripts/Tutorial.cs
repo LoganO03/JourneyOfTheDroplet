@@ -9,7 +9,7 @@ public class Tutorial : MonoBehaviour
 
     public ToggleFade toggle;
 
-    public VideoPlayer video;
+    //public VideoPlayer video;
 
     void Start()
     {
@@ -28,7 +28,7 @@ public class Tutorial : MonoBehaviour
     IEnumerator DelayFadeIn(){
         yield return new WaitForSeconds(3);
         toggle.ToggleActive();
-        video.Play();
+        //video.Play();
     }
 
     IEnumerator DelayFadeOut()
@@ -36,7 +36,7 @@ public class Tutorial : MonoBehaviour
         //Wait for the specified delay time before continuing.
         yield return new WaitForSeconds(sec);
         toggle.ToggleActive();
-        video.Pause();
+        //video.Pause();
     }
 
 
