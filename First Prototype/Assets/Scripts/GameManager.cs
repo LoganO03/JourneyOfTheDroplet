@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public static event Action OnDialogueStarted;
     public static event Action OnDialogueEnded;
     bool skipLineTriggered;
+    bool lineFinished;
 
     public bool endLevel1 = false;
 
@@ -49,7 +50,7 @@ public void StartDialogue(string[] dialogue, int startPosition, string name)
         skipLineTriggered = false;
         OnDialogueStarted?.Invoke();
 
-        for(int i = startPosition; i < dialogue.Length; i++)
+        for (int i = startPosition; i < dialogue.Length; i++)
         {
             //dialogueText.text = dialogue[i];
             dialogueText.text = null;
@@ -61,6 +62,8 @@ public void StartDialogue(string[] dialogue, int startPosition, string name)
                 yield return null;
             }
             skipLineTriggered = false;
+            lineFinished = false;
+            
         }
 
         OnDialogueEnded?.Invoke();
@@ -69,7 +72,15 @@ public void StartDialogue(string[] dialogue, int startPosition, string name)
 
     public void SkipLine()
     {
-        skipLineTriggered = true;
+        if (lineFinished)
+        {
+            skipLineTriggered = true;
+        }
+        else
+        {
+            lineFinished = true;
+        }
+        
     }
 
     public void ShowDialogue(string dialogue, string name)
@@ -88,30 +99,37 @@ public void StartDialogue(string[] dialogue, int startPosition, string name)
 
 float charactersPerSecond = 90;
 
-IEnumerator TypeTextUncapped(string line)
-{
-    float timer = 0;
-    float interval = 1 / charactersPerSecond;
-    string textBuffer = null;
-    char[] chars = line.ToCharArray();
-    int i = 0;
-
-    while (i < chars.Length)
+    IEnumerator TypeTextUncapped(string line)
     {
-        if (timer < Time.deltaTime)
+        float timer = 0;
+        float interval = 1 / charactersPerSecond;
+        string textBuffer = null;
+        char[] chars = line.ToCharArray();
+        int i = 0;
+
+        while (i < chars.Length)
         {
-            textBuffer += chars[i];
-            dialogueText.text = textBuffer;
-            timer += interval;
-            i++;
+            if (lineFinished)
+            {
+                i = chars.Length;
+                dialogueText.text = line;
+            }
+            else if (timer < Time.deltaTime)
+            {
+                textBuffer += chars[i];
+                dialogueText.text = textBuffer;
+                timer += interval;
+                i++;
+            }
+            else
+            {
+                timer -= Time.deltaTime;
+                yield return null;
+            }
+
         }
-        else
-        {
-            timer -= Time.deltaTime;
-            yield return null;
-        }
+        lineFinished = true;
     }
-}
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
