@@ -2,24 +2,25 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using System;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour
 {
     void Awake()
+    {
+        if (Instance == null)
         {
-            if (Instance == null)
-            {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public static GameManager Instance { get; private set; }
-   
+
     public bool canMove = true;
     [SerializeField] TextMeshProUGUI dialogueText;
     [SerializeField] TextMeshProUGUI nameText;
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public float playerWater = 0;
     [SerializeField] public float maxWater;
 
+    public AudioMixer audioMixer;
 
     public static event Action OnDialogueStarted;
     public static event Action OnDialogueEnded;
@@ -36,7 +38,7 @@ public class GameManager : MonoBehaviour
 
     public bool endLevel1 = false;
 
-public void StartDialogue(string[] dialogue, int startPosition, string name)
+    public void StartDialogue(string[] dialogue, int startPosition, string name)
     {
         nameText.text = name + "...";
         dialoguePanel.SetActive(true);
@@ -49,7 +51,7 @@ public void StartDialogue(string[] dialogue, int startPosition, string name)
         skipLineTriggered = false;
         OnDialogueStarted?.Invoke();
 
-        for(int i = startPosition; i < dialogue.Length; i++)
+        for (int i = startPosition; i < dialogue.Length; i++)
         {
             //dialogueText.text = dialogue[i];
             dialogueText.text = null;
@@ -86,45 +88,51 @@ public void StartDialogue(string[] dialogue, int startPosition, string name)
         dialoguePanel.SetActive(false);
     }
 
-float charactersPerSecond = 90;
+    float charactersPerSecond = 90;
 
-IEnumerator TypeTextUncapped(string line)
-{
-    float timer = 0;
-    float interval = 1 / charactersPerSecond;
-    string textBuffer = null;
-    char[] chars = line.ToCharArray();
-    int i = 0;
-
-    while (i < chars.Length)
+    IEnumerator TypeTextUncapped(string line)
     {
-        if (timer < Time.deltaTime)
+        float timer = 0;
+        float interval = 1 / charactersPerSecond;
+        string textBuffer = null;
+        char[] chars = line.ToCharArray();
+        int i = 0;
+
+        while (i < chars.Length)
         {
-            textBuffer += chars[i];
-            dialogueText.text = textBuffer;
-            timer += interval;
-            i++;
-        }
-        else
-        {
-            timer -= Time.deltaTime;
-            yield return null;
+            if (timer < Time.deltaTime)
+            {
+                textBuffer += chars[i];
+                dialogueText.text = textBuffer;
+                timer += interval;
+                i++;
+            }
+            else
+            {
+                timer -= Time.deltaTime;
+                yield return null;
+            }
         }
     }
-}
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(playerWater > maxWater) {
+        if (playerWater > maxWater)
+        {
             playerWater = maxWater;
         }
         NumberInterface.goalNumber = playerWater;
 
+    }
+
+    public void AdjustVolume(string mixerName, float level)
+    {
+        audioMixer.SetFloat(mixerName, level);
     }
 }
