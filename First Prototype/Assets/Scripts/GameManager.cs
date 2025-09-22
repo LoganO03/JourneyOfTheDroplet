@@ -133,6 +133,7 @@ public class GameManager : MonoBehaviour
 
     public void AdjustVolume(string mixerName, float level)
     {
+        Debug.Log("Gamemanager instance found!");
         audioMixer.SetFloat(mixerName, level);
     }
 }
