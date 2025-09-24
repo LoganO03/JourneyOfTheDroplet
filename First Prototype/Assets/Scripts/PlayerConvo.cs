@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerConvo : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class PlayerConvo : MonoBehaviour
 
     public GameObject prompt;
 
+
+    void Start()
+    {
+    } 
     void Update()
     {
         if(inConversation){
