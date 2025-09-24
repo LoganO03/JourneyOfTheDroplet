@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
     public static event Action OnDialogueStarted;
     public static event Action OnDialogueEnded;
     bool skipLineTriggered;
+    bool lineFinished;
 
     public bool endLevel1 = false;
 
@@ -63,6 +64,8 @@ public class GameManager : MonoBehaviour
                 yield return null;
             }
             skipLineTriggered = false;
+            lineFinished = false;
+            
         }
 
         OnDialogueEnded?.Invoke();
@@ -71,7 +74,15 @@ public class GameManager : MonoBehaviour
 
     public void SkipLine()
     {
-        skipLineTriggered = true;
+        if (lineFinished)
+        {
+            skipLineTriggered = true;
+        }
+        else
+        {
+            lineFinished = true;
+        }
+        
     }
 
     public void ShowDialogue(string dialogue, string name)
@@ -100,7 +111,12 @@ public class GameManager : MonoBehaviour
 
         while (i < chars.Length)
         {
-            if (timer < Time.deltaTime)
+            if (lineFinished)
+            {
+                i = chars.Length;
+                dialogueText.text = line;
+            }
+            else if (timer < Time.deltaTime)
             {
                 textBuffer += chars[i];
                 dialogueText.text = textBuffer;
@@ -112,7 +128,9 @@ public class GameManager : MonoBehaviour
                 timer -= Time.deltaTime;
                 yield return null;
             }
+
         }
+        lineFinished = true;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
