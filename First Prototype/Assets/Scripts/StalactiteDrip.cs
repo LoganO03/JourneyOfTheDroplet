@@ -4,10 +4,10 @@ public class StalactiteDrip : MonoBehaviour
 {
 
 
-    
+
     //have existing objects in a queue instead of creating
 
-   
+    public AudioSource dripping;
     public GameObject waterDrop;
 
     private Rigidbody2D stalactite;
@@ -19,7 +19,9 @@ public class StalactiteDrip : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        dripping = GetComponent<AudioSource>();
 
+        dripping.mute = true;
         startSize = new Vector3(waterDrop.transform.localScale.x, waterDrop.transform.localScale.y, waterDrop.transform.localScale.z);
         waterDrop.SetActive(false);
         stalactite = GetComponent<Rigidbody2D>();
@@ -38,6 +40,9 @@ public class StalactiteDrip : MonoBehaviour
 
     void Drip(){
 
+       
+        dripping.Play();
+        
         Vector2 spawn = stalactite.transform.position;
         waterDrop.transform.position = spawn;
 

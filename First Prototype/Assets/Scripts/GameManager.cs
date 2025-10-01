@@ -2,7 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using System;
-using UnityEngine.Audio;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public float playerWater = 0;
     [SerializeField] public float maxWater;
 
-    public AudioMixer audioMixer;
+  
 
     public static event Action OnDialogueStarted;
     public static event Action OnDialogueEnded;
@@ -141,17 +141,16 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (playerWater > maxWater)
+        if (!playerWater.IsUnityNull() && !maxWater.IsUnityNull() && !NumberInterface.IsUnityNull())
         {
-            playerWater = maxWater;
+            if (playerWater > maxWater)
+            {
+                playerWater = maxWater;
+            }
+            NumberInterface.goalNumber = playerWater;
         }
-        NumberInterface.goalNumber = playerWater;
 
     }
 
-    public void AdjustVolume(string mixerName, float level)
-    {
-        Debug.Log("Gamemanager instance found!");
-        audioMixer.SetFloat(mixerName, level);
-    }
+    
 }

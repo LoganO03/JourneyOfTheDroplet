@@ -10,24 +10,27 @@ public class AudioManager : MonoBehaviour
     public Slider MasterSlider;
     public Slider MusicSlider;
     public Slider SFXSlider;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    
+    void Start()
+    {
+    }
     public void AdjustMasterVolume()
     {
         Debug.Log("Adjusting master volume.");
-        GameManager.Instance.AdjustVolume("Master", Mathf.Log10(MasterSlider.value) * 20);
+        AudioInbetween.Instance.AdjustVolume("Master", Mathf.Log10(MasterSlider.value) * 20);
     }
 
     public void AdjustMusicVolume()
     {
         Debug.Log("Adjusting music volume.");
-        GameManager.Instance.AdjustVolume("Music", Mathf.Log10(MusicSlider.value) * 20);
+        AudioInbetween.Instance.AdjustVolume("Music", Mathf.Log10(MusicSlider.value) * 20);
     }
 
     public void AdjustSFXVolume()
     {
         Debug.Log("Adjusting SFX volume.");
-        GameManager.Instance.AdjustVolume("SFX", Mathf.Log10(SFXSlider.value) * 20);
+        AudioInbetween.Instance.AdjustVolume("SFX", Mathf.Log10(SFXSlider.value) * 20);
     }
 }

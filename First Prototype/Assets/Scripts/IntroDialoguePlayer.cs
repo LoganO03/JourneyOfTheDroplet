@@ -53,8 +53,7 @@ public class DialoguePlayer : MonoBehaviour
     void EndDialogue()
     {
         dialogueActive = false;
-        dialogueText.text = ""; 
+        dialogueText.text = "";
         Debug.Log("Section ended.");
-        Initiate.Fade("Cutscene1Finish", Color.black, 1.0f);
-    }
+        Initiate.Fade("Cutscene1Finish", Color.black, 1.0f);}
 }
