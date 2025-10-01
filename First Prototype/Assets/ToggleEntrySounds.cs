@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 
@@ -23,6 +24,13 @@ public class ToggleDripping : MonoBehaviour
             {
                 dripper.dripping.mute = false;
             }
-        player.GetComponent<PlayerMovement>().enteredCave = true;
-    }
+        player.TryGetComponent(out PlayerMovement move);
+        if (!move.IsUnityNull())
+        {
+            move.enteredCave = true;
+            Debug.Log("Entered cave!");
+        }
+        }
+    
+        
 }

@@ -43,6 +43,18 @@ public class MenuHolder : MonoBehaviour
         }
         else
         {
+            foreach (GameObject tab in tabs)
+            {
+                ActiveTab = 0;
+                if (tab == tabs[0])
+                {
+                    tab.SetActive(true);
+                }
+                else
+                {
+                    tab.SetActive(false);
+                }
+            }
             Debug.Log("Note: ActiveTab is " + ActiveTab + " and tabNum is " + tabNum + ". The number of tabs is " + tabs.Count + ".");
         }
     }

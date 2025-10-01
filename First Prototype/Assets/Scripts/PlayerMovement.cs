@@ -199,10 +199,8 @@ public class PlayerMovement : MonoBehaviour
     public void Landed() {
         if (enteredCave)
         {
-            landing.mute = false;
             landing.Play();
             enteredCave = false;
-            landing.mute = true;
         }
         animator.SetBool("grounded", true);
     }
