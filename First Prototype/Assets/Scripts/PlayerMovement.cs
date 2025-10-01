@@ -29,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
   
 
     private bool m_Grounded;
+    public bool enteredCave;
+    public AudioSource landing;
 
 
     public UnityEvent OnLandEvent;
@@ -53,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
+        enteredCave = false;
         oldScaleFactor = scaleFactor();
         rb2D = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -194,6 +197,11 @@ public class PlayerMovement : MonoBehaviour
 
 
     public void Landed() {
+        if (enteredCave)
+        {
+            landing.Play();
+            enteredCave = false;
+        }
         animator.SetBool("grounded", true);
     }
     public float scaleFactor() {
