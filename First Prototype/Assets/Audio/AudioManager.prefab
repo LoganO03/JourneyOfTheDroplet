@@ -49,7 +49,7 @@ MonoBehaviour:
   musicTracks:
   - {fileID: 8300000, guid: aa61e39d7b91d5f48b152c3bae3e9eff, type: 3}
   - {fileID: 8300000, guid: 29877e546edf7034cb01f3f2cd48e445, type: 3}
-  - {fileID: 8300000, guid: bd75ef2120dfbf746ae6f9f3df75b4f0, type: 3}
+  - {fileID: 8300000, guid: 16db1c9d68943fa49b4d945c99771827, type: 3}
 --- !u!82 &5780699748539005812
 AudioSource:
   m_ObjectHideFlags: 0
