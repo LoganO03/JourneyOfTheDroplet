@@ -53,8 +53,17 @@ public class PlayerMovement : MonoBehaviour
 
     bool resetFlag;
 
+    // keeps track of current SFX
+    AudioSource currentWalkSound;
+    public AudioSource grassWalkSound;
+    public AudioSource CaveWalkSound;
+
+    //Has the character touched the ground before?
+    bool everGrounded = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
+        currentWalkSound = grassWalkSound;
         enteredCave = false;
         oldScaleFactor = scaleFactor();
         rb2D = GetComponent<Rigidbody2D>();
@@ -73,23 +82,41 @@ public class PlayerMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
-        if(GameManager.Instance.canMove){
-        horizontal = Input.GetAxisRaw("Horizontal");
-        if (horizontal != 0){
-            animator.SetBool("isRunning", true);
-        } else {
-            animator.SetBool("isRunning", false);
+        if (!animator.GetBool("grounded"))
+        {
+            currentWalkSound.Stop();
         }
-        if (horizontal < 0 && m_Grounded) {
-            spriteRenderer.flipX = true;
-            //transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        } else if (horizontal > 0 && m_Grounded) {
-            spriteRenderer.flipX = false;
-            //transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        }
-        animator.SetFloat("RawHorizontal", horizontal);
-            if(Input.GetKeyDown("space") && animator.GetBool("grounded"))
-{
+        Debug.Log(enteredCave);
+        if (GameManager.Instance.canMove)
+        {
+            horizontal = Input.GetAxisRaw("Horizontal");
+            if (horizontal != 0)
+            {
+                animator.SetBool("isRunning", true);
+                if (animator.GetBool("grounded") && !currentWalkSound.isPlaying)
+                {
+                    currentWalkSound.Play();
+                }
+            }
+            else
+            {
+                animator.SetBool("isRunning", false);
+                currentWalkSound.Stop();
+            }
+            if (horizontal < 0 && m_Grounded)
+            {
+                spriteRenderer.flipX = true;
+                //transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+            else if (horizontal > 0 && m_Grounded)
+            {
+                spriteRenderer.flipX = false;
+                //transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+            animator.SetFloat("RawHorizontal", horizontal);
+            if (Input.GetKeyDown("space") && animator.GetBool("grounded"))
+            {
+                currentWalkSound.Stop();
                 rb2D.AddForce(Vector2.up * 500 * rb2D.mass);
                 if (rb2D.linearVelocity.y > 0.1f)
                 {
@@ -106,11 +133,12 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
 
-            if (animator.GetBool("grounded") && Mathf.Abs(rb2D.linearVelocity.y) > jumpForgiveness) {
-            animator.SetBool("grounded", false);
-            m_Grounded = false;
+            if (animator.GetBool("grounded") && Mathf.Abs(rb2D.linearVelocity.y) > jumpForgiveness)
+            {
+                animator.SetBool("grounded", false);
+                m_Grounded = false;
+            }
         }
-    }
     }
     void FixedUpdate()
     {
@@ -196,13 +224,19 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    public void Landed() {
-        if (enteredCave)
+    public void Landed()
+    {
+        if (enteredCave && everGrounded)
         {
             landing.Play();
             enteredCave = false;
+            currentWalkSound = CaveWalkSound;
         }
         animator.SetBool("grounded", true);
+        if (!everGrounded)
+        {
+            everGrounded = true;
+        }
     }
     public float scaleFactor() {
         return (1 / Mathf.Exp(Mathf.Abs(transform.localScale.x - scaleOfMaximumSpeediness))) * (1 - minMaximumSpeed) + minMaximumSpeed;

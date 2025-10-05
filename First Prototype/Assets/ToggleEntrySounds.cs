@@ -20,17 +20,19 @@ public class ToggleDripping : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player")
+        {
             foreach (StalactiteDrip dripper in stalactiteDrips)
             {
                 dripper.dripping.mute = false;
             }
-        player.TryGetComponent(out PlayerMovement move);
-        if (!move.IsUnityNull())
-        {
-            move.enteredCave = true;
-            Debug.Log("Entered cave!");
+            if (player.TryGetComponent(out PlayerMovement move))
+            {
+
+                move.enteredCave = true;
+                Debug.Log("Entered cave!");
+            }
         }
-        }
+    }
     
         
 }
