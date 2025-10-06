@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 
 public class PlayerConvo : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class PlayerConvo : MonoBehaviour
 
     public GameObject prompt;
 
+
+    void Start()
+    {
+    } 
     void Update()
     {
         if(inConversation){
@@ -32,10 +37,13 @@ public class PlayerConvo : MonoBehaviour
     }
 
     public void PauseToggleActive(){
-        if (pausepanel.activeInHierarchy) {
+        if (pausepanel.activeInHierarchy)
+        {
             pausepanel.SetActive(false);
+            pausepanel.GetComponent<MenuHolder>().changeTab(0);
         }
-        else {
+        else
+        {
             pausepanel.SetActive(true);
         }
     }

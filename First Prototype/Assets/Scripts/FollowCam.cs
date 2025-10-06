@@ -34,13 +34,17 @@ public class FollowCam : MonoBehaviour
         {
             Vector3 deviance = Camera.main.WorldToViewportPoint(playerSprite.transform.position);
             //Debug.Log(deviance);
+            float newSize;
             if (Mathf.Abs(deviance.x - 0.5f) < 0.375f && Mathf.Abs(deviance.y - 0.5f) < 0.375f) {
-                GetComponent<Camera>().orthographicSize += (Mathf.Max(playerSprite.transform.localScale.x * 8, 1) - GetComponent<Camera>().orthographicSize) * scaleEasing * Time.deltaTime;
+                newSize = Mathf.Max(playerSprite.transform.localScale.x * 8, 1);
+                newSize = Mathf.Clamp(newSize, 5f, 8f);
+                GetComponent<Camera>().orthographicSize += (newSize - GetComponent<Camera>().orthographicSize) * scaleEasing * Time.deltaTime;
                 transform.localScale += (playerSprite.transform.localScale - transform.localScale) * scaleEasing * Time.deltaTime;
             } else {
                 float scaleAmount = Mathf.Max(Mathf.Abs(deviance.x - 0.5f) + 1.125f, Mathf.Abs(deviance.x - 0.5f) + 1.125f);
-                
-                GetComponent<Camera>().orthographicSize += (GetComponent<Camera>().orthographicSize * scaleAmount - GetComponent<Camera>().orthographicSize) * scaleEasing * Time.deltaTime;
+                newSize = GetComponent<Camera>().orthographicSize * scaleAmount;
+                newSize = Mathf.Clamp(newSize, 5f, 8f);
+                GetComponent<Camera>().orthographicSize += (newSize - GetComponent<Camera>().orthographicSize) * scaleEasing * Time.deltaTime;
                 transform.localScale += (transform.localScale * scaleAmount - transform.localScale) * scaleEasing * Time.deltaTime;
             }
 

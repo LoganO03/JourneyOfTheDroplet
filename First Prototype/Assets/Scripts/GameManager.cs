@@ -2,24 +2,25 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
     void Awake()
+    {
+        if (Instance == null)
         {
-            if (Instance == null)
-            {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public static GameManager Instance { get; private set; }
-   
+
     public bool canMove = true;
     [SerializeField] TextMeshProUGUI dialogueText;
     [SerializeField] TextMeshProUGUI nameText;
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] public float playerWater = 0;
     [SerializeField] public float maxWater;
 
+  
 
     public static event Action OnDialogueStarted;
     public static event Action OnDialogueEnded;
@@ -37,7 +39,7 @@ public class GameManager : MonoBehaviour
 
     public bool endLevel1 = false;
 
-public void StartDialogue(string[] dialogue, int startPosition, string name)
+    public void StartDialogue(string[] dialogue, int startPosition, string name)
     {
         nameText.text = name + "...";
         dialoguePanel.SetActive(true);
@@ -97,7 +99,7 @@ public void StartDialogue(string[] dialogue, int startPosition, string name)
         dialoguePanel.SetActive(false);
     }
 
-float charactersPerSecond = 90;
+    float charactersPerSecond = 90;
 
     IEnumerator TypeTextUncapped(string line)
     {
@@ -133,16 +135,22 @@ float charactersPerSecond = 90;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(playerWater > maxWater) {
-            playerWater = maxWater;
+        if (!playerWater.IsUnityNull() && !maxWater.IsUnityNull() && !NumberInterface.IsUnityNull())
+        {
+            if (playerWater > maxWater)
+            {
+                playerWater = maxWater;
+            }
+            NumberInterface.goalNumber = playerWater;
         }
-        NumberInterface.goalNumber = playerWater;
 
     }
+
+    
 }
