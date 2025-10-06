@@ -46,6 +46,7 @@ public class Plant : MonoBehaviour
             {
                 transform.localScale = new Vector2(maxWidth, transform.localScale.y);
                 GetComponent<JumpPad>().enabled = true;
+                GetComponent<BoxCollider2D>().enabled = true;
             }
             else if (transform.localScale.y >= maxHeight)
             {
