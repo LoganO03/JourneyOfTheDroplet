@@ -3,6 +3,7 @@ using UnityEngine;
 public class Puddle : MonoBehaviour
 {
     private Vector3 fullHeight;
+    public AudioSource splash;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {   
@@ -14,6 +15,14 @@ public class Puddle : MonoBehaviour
     {
         if(transform.localPosition.y > fullHeight.y) {
             transform.localPosition -= Vector3.up * (transform.localPosition.y - fullHeight.y);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            splash.Play();
         }
     }
 
