@@ -4,16 +4,26 @@ public class Puddle : MonoBehaviour
 {
     private Vector3 fullHeight;
     public AudioSource splash;
+    bool splashing;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {   
+    {
+        splashing = false;
         fullHeight = transform.localPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(transform.localPosition.y > fullHeight.y) {
+        if (splashing)
+        {
+            if (splash.isPlaying)
+            {
+                splashing = false;
+            }
+        }
+        if (transform.localPosition.y > fullHeight.y)
+        {
             transform.localPosition -= Vector3.up * (transform.localPosition.y - fullHeight.y);
         }
     }
@@ -21,8 +31,11 @@ public class Puddle : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
-        {
-            splash.Play();
+        { if (!splashing)
+            {
+                splash.Play();
+                splashing = true;
+            }
         }
     }
 

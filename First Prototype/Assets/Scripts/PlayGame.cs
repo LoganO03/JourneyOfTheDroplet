@@ -13,7 +13,7 @@ public class PlayGame : MonoBehaviour
     {
             Debug.Log("I've been clicked");
             Initiate.Fade("AtmHub", Color.black, 1.0f);
-            AudioInbetween.Instance.GetComponent<AudioSource>().mute = true;
+            AudioInbetween.Instance.GetComponent<AudioSource>().Stop();
        
             turnOffPanel();
         

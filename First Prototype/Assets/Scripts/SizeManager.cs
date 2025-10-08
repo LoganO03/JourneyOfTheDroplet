@@ -27,7 +27,7 @@ public class SizeManager : MonoBehaviour
         if (destroyedCount >= 20)
         {
             Initiate.Fade("IntroLeadIn", Color.black, 1.0f);
-            AudioInbetween.Instance.GetComponent<AudioSource>().mute = true;
+            AudioInbetween.Instance.GetComponent<AudioSource>().Stop();
         }
    }
 
