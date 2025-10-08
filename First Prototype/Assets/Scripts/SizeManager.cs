@@ -11,7 +11,12 @@ public class SizeManager : MonoBehaviour
 
     private int destroyedCount = 0;
     public TextMeshProUGUI counterText;
+    AudioSource collectionSound;
 
+    void Start()
+    {
+        collectionSound = GameObject.FindGameObjectWithTag("WaterCollectionSound").GetComponent<AudioSource>();
+}
 
     void OnTriggerEnter2D(Collider2D other){
         currentScale += 0.2f;
@@ -23,6 +28,10 @@ public class SizeManager : MonoBehaviour
         destroyedCount++;
 
         counterText.text = "Water Collected: " + destroyedCount + " / 20";
+
+        float variance = Random.Range(-.55f, .5f);
+        collectionSound.pitch = (float)(2.5 + variance);
+        collectionSound.Play();
 
         if (destroyedCount >= 20)
         {
