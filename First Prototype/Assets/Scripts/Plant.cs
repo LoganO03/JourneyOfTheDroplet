@@ -9,6 +9,8 @@ public class Plant : MonoBehaviour
     public float speed = 1;
     public bool ladder;
     public bool bounce;
+    public bool platform;
+    public bool tree;
     public float maxWidth;
     public float maxHeight;
 
@@ -22,7 +24,7 @@ public class Plant : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
     }
 
-    
+
     //col.gameObject.GetComponent<PlayerMovement>().StartClimb();
 
     public void Grow()
@@ -45,8 +47,10 @@ public class Plant : MonoBehaviour
             if (transform.localScale.x >= maxWidth)
             {
                 transform.localScale = new Vector2(maxWidth, transform.localScale.y);
-                GetComponent<JumpPad>().enabled = true;
-                GetComponent<BoxCollider2D>().enabled = true;
+                    GetComponent<JumpPad>().enabled = true;
+                    GetComponent<BoxCollider2D>().enabled = true;
+                
+
             }
             else if (transform.localScale.y >= maxHeight)
             {
@@ -55,7 +59,27 @@ public class Plant : MonoBehaviour
             else
             {
                 transform.localScale += new Vector3(growthRate, growthRate, 0);
-                transform.position += new Vector3(0, -(growthRate/3), 0);
+                transform.position += new Vector3(0, -(growthRate / 3), 0);
+                
+                
+            }
+        }
+        else if (tree)
+        {
+            // it is a tree
+            if (transform.localScale.x >= 1 || transform.localScale.y >= 1)
+            {
+                if (GetComponent<BoxCollider2D>().excludeLayers == LayerMask.GetMask("Nothing"))
+                {
+                    GetComponent<BoxCollider2D>().excludeLayers = LayerMask.GetMask("Player");
+                }
+                transform.localScale = new Vector2(1, 1);
+                GetComponent<TreeGrow>().GrowTree(growthRate, maxWidth, maxHeight);
+            }
+            else
+            {
+                transform.localScale += new Vector3(growthRate, growthRate, 0);
+                transform.position += new Vector3(0, growthRate, 0);
             }
         }
         
