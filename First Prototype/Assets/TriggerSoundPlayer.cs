@@ -17,6 +17,7 @@ public class TriggerSoundPlayer : MonoBehaviour
             Initiate.Fade("Stage1", Color.black, 1.0f);
             AudioInbetween.Instance.swapTrack(1);
             AudioInbetween.Instance.GetComponent<AudioSource>().mute = false;
+            AudioInbetween.Instance.GetComponent<AudioSource>().Play();
         }
 
     }
