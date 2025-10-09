@@ -3,7 +3,7 @@ using UnityEngine;
 public class ToStage1 : MonoBehaviour
 {
 
-    public void ReactToClick()
+    public void ToStageOne()
     {
         Debug.Log("I've been clicked");
         // if(GameManager.Instance.endLevel1 == false){
@@ -12,6 +12,13 @@ public class ToStage1 : MonoBehaviour
         AudioInbetween.Instance.GetComponent<AudioSource>().mute = false;
         // }
 
+    }
+
+    public void ToStageTwo()
+    {
+        Initiate.Fade("Stage2", Color.black, 1.0f);
+        AudioInbetween.Instance.swapTrack(2);
+        AudioInbetween.Instance.GetComponent<AudioSource>().mute = false;
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

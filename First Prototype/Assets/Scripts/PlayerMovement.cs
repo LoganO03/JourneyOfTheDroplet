@@ -1,4 +1,4 @@
-﻿using System.Runtime.CompilerServices;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
@@ -14,20 +14,22 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     float horizontal;
-
+    float vertical;
     public float maxSpeed;
     public float acceltime;
     public float deceltime;
     public float airAccel;
     public float jumpForgiveness;
- 
-
+    public float climbSpeed = 2;
+    private float normalGravity;
     public float scaleOfMaximumSpeediness;
     public float minMaximumSpeed;
     private float targetxVelocity;
     private float oldScaleFactor;
-  
 
+
+
+    
     private bool m_Grounded;
     public bool enteredCave;
     public AudioSource landing;
@@ -50,8 +52,34 @@ public class PlayerMovement : MonoBehaviour
     float oldx;
     float oldtime;
     float expectedAcceleration;
+    private bool isclimbing;
+
+    private bool onJumpPad = false;
 
     bool resetFlag;
+
+    public void StartClimb(float xcoord)
+    {
+        isclimbing = true;
+        GameManager.Instance.canMove = false;
+        normalGravity = rb2D.gravityScale;
+        rb2D.gravityScale = 0;
+        transform.position = new Vector3(xcoord, transform.position.y, transform.position.z);
+        m_Grounded = false;
+        
+    }
+    
+    public void EndClimb()
+    {
+        isclimbing = false;
+        GameManager.Instance.canMove = true;
+        rb2D.gravityScale = normalGravity;
+    }
+
+    public void ToggleBigJump(bool b)
+    {
+        onJumpPad = b;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
@@ -72,28 +100,45 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update() {
-        if(GameManager.Instance.canMove){
-        horizontal = Input.GetAxisRaw("Horizontal");
-        if (horizontal != 0){
-            animator.SetBool("isRunning", true);
-        } else {
-            animator.SetBool("isRunning", false);
-        }
-        if (horizontal < 0 && m_Grounded) {
-            spriteRenderer.flipX = true;
-            //transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        } else if (horizontal > 0 && m_Grounded) {
-            spriteRenderer.flipX = false;
-            //transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        }
-        animator.SetFloat("RawHorizontal", horizontal);
-            if(Input.GetKeyDown("space") && animator.GetBool("grounded"))
-{
-                rb2D.AddForce(Vector2.up * 500 * rb2D.mass);
-                if (rb2D.linearVelocity.y > 0.1f)
+    void Update()
+    {
+        if (GameManager.Instance.canMove)
+        {
+            horizontal = Input.GetAxisRaw("Horizontal");
+            if (horizontal != 0)
+            {
+                animator.SetBool("isRunning", true);
+            }
+            else
+            {
+                animator.SetBool("isRunning", false);
+            }
+            if (horizontal < 0 && m_Grounded)
+            {
+                spriteRenderer.flipX = true;
+                //transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+            else if (horizontal > 0 && m_Grounded)
+            {
+                spriteRenderer.flipX = false;
+                //transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+            animator.SetFloat("RawHorizontal", horizontal);
+            if (Input.GetKeyDown("space") && animator.GetBool("grounded"))
+            {
+                float forceamount = 500;
+                float maxvel = 0.1f;
+                if (onJumpPad)
                 {
-                    rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, 0.1f);
+                    //change these to change how much the jump pad affects the jump
+                    forceamount = 900;
+                    maxvel = 0.2f;
+                }
+
+                rb2D.AddForce(Vector2.up * forceamount * rb2D.mass);
+                if (rb2D.linearVelocity.y > maxvel)
+                {
+                    rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, maxvel);
                 }
 
                 animator.SetBool("grounded", false);
@@ -106,11 +151,28 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
 
-            if (animator.GetBool("grounded") && Mathf.Abs(rb2D.linearVelocity.y) > jumpForgiveness) {
-            animator.SetBool("grounded", false);
-            m_Grounded = false;
+            if (animator.GetBool("grounded") && Mathf.Abs(rb2D.linearVelocity.y) > jumpForgiveness)
+            {
+                animator.SetBool("grounded", false);
+                m_Grounded = false;
+            }
         }
-    }
+        else if (isclimbing)
+        {
+            vertical = Input.GetAxisRaw("Vertical");
+            rb2D.linearVelocity = new Vector2(0f, vertical * climbSpeed);
+            if (vertical != 0)
+            {
+                animator.SetBool("isRunning", true);
+            }
+            else
+            {
+                animator.SetBool("isRunning", false);
+                
+            }
+            
+
+        }
     }
     void FixedUpdate()
     {
@@ -126,39 +188,50 @@ public class PlayerMovement : MonoBehaviour
         oldx = transform.position.x;
         oldtime = Time.fixedTime;
 
-        if(GameManager.Instance.canMove){
-            if(oldHorizontal != Mathf.Ceil(Mathf.Abs(horizontal)) * Mathf.Sign(horizontal) || Mathf.Abs(discrepancyx) < 0.5 || resetFlag) {
+        if (GameManager.Instance.canMove)
+        {
+            if (oldHorizontal != Mathf.Ceil(Mathf.Abs(horizontal)) * Mathf.Sign(horizontal) || Mathf.Abs(discrepancyx) < 0.5 || resetFlag)
+            {
 
                 resetFlag = false;
 
                 start = rb2D.linearVelocity.x * scaleFactor() / oldScaleFactor;
                 diff = maxSpeed * horizontal - start;
                 float speedPercent;
-                if(horizontal == 0f) speedPercent = Mathf.Abs(rb2D.linearVelocity.x / maxSpeed);
+                if (horizontal == 0f) speedPercent = Mathf.Abs(rb2D.linearVelocity.x / maxSpeed);
                 else speedPercent = Mathf.Abs((maxSpeed * horizontal - rb2D.linearVelocity.x) / maxSpeed * horizontal);
-                if(horizontal == 0f) time = speedPercent * deceltime;
+                if (horizontal == 0f) time = speedPercent * deceltime;
                 else time = speedPercent * acceltime;
-                if(time == 0f) rate = 0;
+                if (time == 0f) rate = 0;
                 else rate = 1 / time;
                 progress = 0;
             }
-            if(progress < 1f) {
+            if (progress < 1f)
+            {
                 progress = progress + rate * Time.deltaTime * (m_Grounded ? 1 : airAccel);
                 float x;
-                if(progress >= 1f) x = 1;
+                if (progress >= 1f) x = 1;
                 else if (progress * progress == 0f) x = 0;
                 else x = 1 + (Mathf.Sqrt(1 - ((1 - progress) * (1 - progress))) - 1);
-                if(float.IsNaN(x)) Debug.Log("");
+                if (float.IsNaN(x)) Debug.Log("");
                 float newVelocity = start + x * diff;
                 expectedAcceleration = (newVelocity - rb2D.linearVelocity.x);
                 rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x * (scaleFactor() / oldScaleFactor) + expectedAcceleration * scaleFactor(), rb2D.linearVelocity.y);
-                if(time == 0f) rate = 0;
+                if (time == 0f) rate = 0;
                 else rate = 1 / time;
-            } else if (rb2D.linearVelocity.x != maxSpeed * horizontal * scaleFactor()) {
+            }
+            else if (rb2D.linearVelocity.x != maxSpeed * horizontal * scaleFactor())
+            {
                 Debug.Log("resetting acceleration");
                 resetFlag = true;
             }
-        } else {
+        }
+        else if (isclimbing)
+        {
+            
+        }
+        else
+        {
             rb2D.linearVelocity = new Vector2(0f, rb2D.linearVelocity.y);
         }
 
@@ -195,6 +268,23 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
+    public void ExtremeJump()
+    {
+        rb2D.AddForce(Vector2.up * 1000 * rb2D.mass);
+                if (rb2D.linearVelocity.y > 0.2f)
+                {
+                    rb2D.linearVelocity = new Vector2(rb2D.linearVelocity.x, 0.2f);
+                }
+
+                animator.SetBool("grounded", false);
+                m_Grounded = false;
+
+                // 🔊 Play jump sound
+                if (jumpSound != null && audioSource != null)
+                {
+                    audioSource.PlayOneShot(jumpSound, 0.25f);
+                }
+    }
 
     public void Landed() {
         if (enteredCave)
