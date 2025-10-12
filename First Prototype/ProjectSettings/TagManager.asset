@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - WaterCollectionSound
+  - PuddleDrink
   layers:
   - Default
   - TransparentFX
