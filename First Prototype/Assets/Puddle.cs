@@ -47,5 +47,20 @@ public class Puddle : MonoBehaviour
             float otherVolume = (other.transform.localScale.x * other.transform.localScale.y) * Mathf.PI * other.transform.localScale.z;
             transform.localPosition += Vector3.up * otherVolume / (transform.localScale.x * transform.localScale.y * transform.localScale.z);
         }
+    
     }
+    public float waterFillRate = 0.1f; // adjustable rate of water added per second
+
+    public void AddWaterOverTime(){
+        // Increase the scale of the puddle gradually over time
+        float amountToAdd = waterFillRate * Time.deltaTime;
+
+        // Increase the puddle's scale on x and y (width and height)
+        transform.localScale += new Vector3(amountToAdd, amountToAdd, 0);
+
+        // Move the puddle upwards visually to simulate filling
+        transform.localPosition += Vector3.up * (amountToAdd / transform.localScale.z);
+}
+
+
 }
