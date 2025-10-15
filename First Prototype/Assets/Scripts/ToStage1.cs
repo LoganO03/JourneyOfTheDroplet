@@ -18,8 +18,9 @@ public class ToStage1 : MonoBehaviour
     public void ToStageTwo()
     {
         Initiate.Fade("Stage2", Color.black, 1.0f);
+
         AudioInbetween.Instance.swapTrack(2);
-        AudioInbetween.Instance.GetComponent<AudioSource>().mute = false;
+        AudioInbetween.Instance.GetComponent<AudioSource>().Stop();
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
