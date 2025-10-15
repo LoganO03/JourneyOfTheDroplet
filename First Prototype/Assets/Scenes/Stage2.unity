@@ -3645,7 +3645,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 2
-  m_Size: {x: 2.3, y: 4.88}
+  m_Size: {x: 1.73, y: 2.38}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
@@ -32209,7 +32209,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 110372602602599016, guid: 4064557e0eb74c34891328ff4bb19e12, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.39
+      value: 8.9
       objectReference: {fileID: 0}
     - target: {fileID: 110372602602599016, guid: 4064557e0eb74c34891328ff4bb19e12, type: 3}
       propertyPath: m_LocalPosition.y
@@ -32264,13 +32264,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1129214769912707586, guid: ebdd67a49bc59f64fb030002fdc44a02, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2750284841199650733, guid: ebdd67a49bc59f64fb030002fdc44a02, type: 3}
       propertyPath: m_Name
       value: MushroomJump
       objectReference: {fileID: 0}
     - target: {fileID: 9215888863030287696, guid: ebdd67a49bc59f64fb030002fdc44a02, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.418163
+      value: 6.42
       objectReference: {fileID: 0}
     - target: {fileID: 9215888863030287696, guid: ebdd67a49bc59f64fb030002fdc44a02, type: 3}
       propertyPath: m_LocalPosition.y
@@ -32313,6 +32317,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebdd67a49bc59f64fb030002fdc44a02, type: 3}
+--- !u!1001 &5915873253071293756
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1928759164462223156, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928759164462223156, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -2.562
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928759164462223156, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.023442814
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928759164462223156, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928759164462223156, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928759164462223156, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928759164462223156, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928759164462223156, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928759164462223156, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928759164462223156, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191644034478836044, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
+      propertyPath: m_Name
+      value: Tree
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -32325,7 +32386,6 @@ SceneRoots:
   - {fileID: 646434180}
   - {fileID: 749414847}
   - {fileID: 2283254573101449146}
-  - {fileID: 300682763}
   - {fileID: 910526800}
   - {fileID: 5048236499063619309}
   - {fileID: 1862283659}
