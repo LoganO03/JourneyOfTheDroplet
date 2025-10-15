@@ -22,6 +22,9 @@ public class ShootWater : MonoBehaviour
 
     public int moveForce;
 
+    //SFX for beam
+    public AudioSource audioSource;
+
 
     private int pos = 0;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -46,11 +49,27 @@ public class ShootWater : MonoBehaviour
         pos = pos%201;
         if (Input.GetMouseButton(0))
         {
-            if (!pausepanel.activeInHierarchy && GameManager.Instance.playerWater > 0.001f){
+            if (!pausepanel.activeInHierarchy && GameManager.Instance.playerWater > 0.001f)
+            {
                 Shoot();
+                if (!audioSource.isPlaying)
+                {
+                    Debug.Log("blub blub");
+                    audioSource.Play();
+                }
                 GameManager.Instance.playerWater -= Mathf.Min(waterVolume, GameManager.Instance.playerWater) * drainRate * player.transform.localScale.x;
             }
-            //Debug.Log("Shooting");
+            else if (audioSource.isPlaying)
+            {
+                audioSource.Stop();
+                Debug.Log("blubless");
+                //Debug.Log("Shooting");
+            }
+        }
+        else if (audioSource.isPlaying)
+        {
+            audioSource.Stop();
+            Debug.Log("blubless");
         }
         float volume = (GameManager.Instance.playerWater * 3) / (Mathf.PI * 4);
         transform.localScale = new Vector3(Mathf.Max(Mathf.Pow(volume, 0.33333f), minCharacterScale), Mathf.Max(Mathf.Pow(volume, 0.33333f), minCharacterScale), 1);

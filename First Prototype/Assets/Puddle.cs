@@ -1,19 +1,47 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Puddle : MonoBehaviour
 {
     private Vector3 fullHeight;
+    public AudioSource splash;
+    bool splashing;
+    AudioSource puddleDrink;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
-    {   
+    {
+        splashing = false;
         fullHeight = transform.localPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(transform.localPosition.y > fullHeight.y) {
+        if (puddleDrink.IsUnityNull())
+                {
+                    puddleDrink = GameObject.FindGameObjectWithTag("PuddleDrink").GetComponent<AudioSource>();
+                }
+        if (splashing)
+        {
+            if (splash.isPlaying)
+            {
+                splashing = false;
+            }
+        }
+        if (transform.localPosition.y > fullHeight.y)
+        {
             transform.localPosition -= Vector3.up * (transform.localPosition.y - fullHeight.y);
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        { if (!splashing)
+            {
+                splash.Play();
+                splashing = true;
+            }
         }
     }
 
@@ -23,6 +51,11 @@ public class Puddle : MonoBehaviour
             float suckWater = (transform.localScale.x * transform.localScale.y) * suckSpeed;
             GameManager.Instance.playerWater += suckWater;
             transform.localPosition -= Vector3.up * suckWater / transform.localScale.z;
+            
+                if (!puddleDrink.isPlaying)
+                    {
+                        puddleDrink.Play();
+                    }
         }
         if(other.gameObject.layer == 8 && other.transform.localScale.x > 0.01f) { // pickup layer
             float suckSpeed = 2 * Time.deltaTime / other.transform.localScale.z; //other.transform.localScale.x / transform.localScale.x;
@@ -36,14 +69,25 @@ public class Puddle : MonoBehaviour
         }
     }
 
-    public void getFilld (Collider2D other) {
-        if(other.gameObject.layer == 8) { // pickup layer
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            puddleDrink.Stop();
+        }
+    }
+
+    public void getFilld(Collider2D other)
+    {
+        if (other.gameObject.layer == 8)
+        { // pickup layer
             float suckSpeed = 2 * Time.deltaTime / other.transform.localScale.z; //other.transform.localScale.x / transform.localScale.x;
             float suckWater = suckSpeed / transform.localScale.z;
             transform.localPosition += Vector3.up * (suckWater);
             other.transform.localScale -= new Vector3(other.transform.localScale.x, other.transform.localScale.y, 0) * (suckWater / (other.transform.localScale.x * other.transform.localScale.y * other.transform.localScale.z));
         }
-        if(other.gameObject.layer == 4) { // water projectile layer
+        if (other.gameObject.layer == 4)
+        { // water projectile layer
             float otherVolume = (other.transform.localScale.x * other.transform.localScale.y) * Mathf.PI * other.transform.localScale.z;
             transform.localPosition += Vector3.up * otherVolume / (transform.localScale.x * transform.localScale.y * transform.localScale.z);
         }

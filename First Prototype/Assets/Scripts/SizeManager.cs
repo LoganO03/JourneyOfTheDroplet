@@ -11,10 +11,18 @@ public class SizeManager : MonoBehaviour
 
     private int destroyedCount = 0;
     public TextMeshProUGUI counterText;
+    AudioSource collectionSound;
 
+    public TopDownMovement movementManager;
+
+    void Start()
+    {
+        collectionSound = GameObject.FindGameObjectWithTag("WaterCollectionSound").GetComponent<AudioSource>();
+}
 
     void OnTriggerEnter2D(Collider2D other){
-        currentScale += 0.2f;
+        currentScale += 0.10f;
+        movementManager.increaseSpeed();
 
         transform.localScale = new Vector3(currentScale, currentScale, 1);
 
@@ -22,12 +30,16 @@ public class SizeManager : MonoBehaviour
 
         destroyedCount++;
 
-        counterText.text = "Water Collected: " + destroyedCount + " / 20";
+        counterText.text = "Water Collected: " + destroyedCount + " / 30";
 
-        if (destroyedCount >= 20)
+        float variance = Random.Range(-.55f, .5f);
+        collectionSound.pitch = (float)(2.5 + variance);
+        collectionSound.Play();
+
+        if (destroyedCount >= 30)
         {
             Initiate.Fade("IntroLeadIn", Color.black, 1.0f);
-            AudioInbetween.Instance.GetComponent<AudioSource>().mute = true;
+            AudioInbetween.Instance.GetComponent<AudioSource>().Stop();
         }
    }
 

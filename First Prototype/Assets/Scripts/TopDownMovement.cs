@@ -5,8 +5,9 @@ public class TopDownMovement : MonoBehaviour {
 // The top down movement for the Intro Condensation Minigame
     public Camera cam;
     public float speed = 2f;
-    void Update() {
-        Vector2 input= Input.mousePosition;
+    void Update()
+    {
+        Vector2 input = Input.mousePosition;
 
         Vector3 worldInput = cam.ScreenToWorldPoint(input);
 
@@ -15,6 +16,11 @@ public class TopDownMovement : MonoBehaviour {
         newPosition.z = transform.position.z;
 
         transform.position = newPosition;
+    }
+    
+    public void increaseSpeed()
+    {
+        speed += 0.075f;
     }
 
 }
