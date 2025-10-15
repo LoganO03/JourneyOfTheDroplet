@@ -200,7 +200,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (isSwimming)
         {
-            rb2D.linearVelocity = new Vector2(2.5f, 0f);
+            rb2D.linearVelocity = new Vector2(3f, 0f);
         }
     }
     void FixedUpdate()
