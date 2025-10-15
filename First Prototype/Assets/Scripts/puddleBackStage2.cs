@@ -2,35 +2,37 @@ using UnityEngine;
 
 public class puddleBackStage2 : MonoBehaviour
 {
-    
-    [SerializeField] Puddle water;
-    
-    bool collidingWithPuddle = true;
-    
+    [SerializeField]
+    Puddle water;
+
+    bool collidingWithPuddle = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        water.getFilld(1.0);
+        if (collidingWithPuddle == false)
+        {
+            water.AddWaterOverTime(0.005f);
+        }
     }
-    /*
-    void OnTriggerStay2D (Collider2D other) {
-        if(other.gameObject.name == "water") { // pickup layer
+
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 6)
+        {
             collidingWithPuddle = true;
         }
-        else if(collidingWithPuddle && (other.gameObject.layer == 4 || other.gameObject.layer == 8)) { 
-            water.getFilld(other);
-        }
     }
-    void OnTriggerExit2D(Collider2D other) {
-        if(other.gameObject.name == "water") { // pickup layer
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.layer == 6)
+        {
             collidingWithPuddle = false;
         }
     }
-    */
 }
