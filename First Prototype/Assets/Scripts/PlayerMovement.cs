@@ -121,7 +121,7 @@ public class PlayerMovement : MonoBehaviour
             if (horizontal != 0)
             {
                 animator.SetBool("isRunning", true);
-                if (animator.GetBool("grounded") ** !currentWalkSound.isPlaying)
+                if (animator.GetBool("grounded") && !currentWalkSound.isPlaying)
                 {
                     currentWalkSound.Play();
                 }
