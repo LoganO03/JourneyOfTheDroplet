@@ -71,7 +71,9 @@ public class PlayerMovement : MonoBehaviour
     }
     public void StartSwim()
     {
+        Debug.Log("swim");
         GameManager.Instance.canMove = false;
+        Debug.Log(GameManager.Instance.canMove);
         isSwimming = true;
     }
     
@@ -79,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
     {
         isclimbing = false;
         GameManager.Instance.canMove = true;
+        Debug.Log("climbing done");
         rb2D.gravityScale = normalGravity;
     }
 
@@ -197,7 +200,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (isSwimming)
         {
-            rb2D.linearVelocity = new Vector2(2, 0f);
+            rb2D.linearVelocity = new Vector2(2.5f, 0f);
         }
     }
     void FixedUpdate()
@@ -257,7 +260,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            rb2D.linearVelocity = new Vector2(0f, rb2D.linearVelocity.y);
+            if (!isSwimming)
+            {
+                rb2D.linearVelocity = new Vector2(0f, rb2D.linearVelocity.y);
+            }
+            
         }
 
 
