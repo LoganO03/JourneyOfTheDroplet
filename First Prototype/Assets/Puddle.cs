@@ -91,5 +91,18 @@ public class Puddle : MonoBehaviour
             float otherVolume = (other.transform.localScale.x * other.transform.localScale.y) * Mathf.PI * other.transform.localScale.z;
             transform.localPosition += Vector3.up * otherVolume / (transform.localScale.x * transform.localScale.y * transform.localScale.z);
         }
+    
     }
+
+    public void AddWaterOverTime(float waterFillRate)
+    {
+
+        // Increase the scale of the puddle gradually over time
+        float amountToAdd = waterFillRate * Time.deltaTime;
+
+        float moveUp = Mathf.Min(transform.localPosition.y + amountToAdd, fullHeight.y);
+        transform.localPosition = new Vector3(transform.localPosition.x, moveUp, transform.localPosition.z);
+}
+
+
 }

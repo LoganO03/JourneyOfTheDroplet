@@ -17,6 +17,7 @@ public class Erode : MonoBehaviour
         
     }
 
+
     void OnCollisionEnter2D(Collision2D col)
     {
         //"Wall" name will need to be changed to actual name of layer
@@ -24,6 +25,11 @@ public class Erode : MonoBehaviour
         {
             //col.gameObject.SetActive(false);
             Destroy(col.gameObject);
+        }
+
+        else if (col.gameObject.tag == "Plant")
+        {
+            col.gameObject.GetComponent<Plant>().Grow();
         }
         //add if statement to know if x or y should shrink (Optional)
         //water.transform.localScale = new Vector3(0.1f, 0.1f, 1);
