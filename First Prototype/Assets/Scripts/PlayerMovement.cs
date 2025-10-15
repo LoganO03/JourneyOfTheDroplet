@@ -87,8 +87,17 @@ public class PlayerMovement : MonoBehaviour
         onJumpPad = b;
     }
 
+    // keeps track of current SFX
+    AudioSource currentWalkSound;
+    public AudioSource grassWalkSound;
+    public AudioSource CaveWalkSound;
+
+    //Has the character touched the ground before?
+    bool everGrounded = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
+        currentWalkSound = grassWalkSound;
         enteredCave = false;
         oldScaleFactor = scaleFactor();
         rb2D = GetComponent<Rigidbody2D>();
@@ -108,16 +117,25 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!animator.GetBool("grounded"))
+        {
+            currentWalkSound.Stop();
+        }
         if (GameManager.Instance.canMove)
         {
             horizontal = Input.GetAxisRaw("Horizontal");
             if (horizontal != 0)
             {
                 animator.SetBool("isRunning", true);
+                if (animator.GetBool("grounded") && !currentWalkSound.isPlaying)
+                {
+                    currentWalkSound.Play();
+                }
             }
             else
             {
                 animator.SetBool("isRunning", false);
+                currentWalkSound.Stop();
             }
             if (horizontal < 0 && m_Grounded)
             {
@@ -135,6 +153,7 @@ public class PlayerMovement : MonoBehaviour
                 float forceamount = 500;
                 float maxvel = 0.1f;
                 if (onJumpPad)
+        
                 {
                     //change these to change how much the jump pad affects the jump
                     forceamount = 900;
@@ -293,12 +312,17 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void Landed() {
-        if (enteredCave)
+        if (enteredCave && everGrounded)
         {
             landing.Play();
             enteredCave = false;
+            currentWalkSound = CaveWalkSound;
         }
         animator.SetBool("grounded", true);
+        if (!everGrounded)
+        {
+            everGrounded = true;
+        }
     }
     public float scaleFactor() {
         return (1 / Mathf.Exp(Mathf.Abs(transform.localScale.x - scaleOfMaximumSpeediness))) * (1 - minMaximumSpeed) + minMaximumSpeed;

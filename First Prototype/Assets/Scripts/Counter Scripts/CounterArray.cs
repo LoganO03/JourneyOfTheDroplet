@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class CounterArray : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class CounterArray : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (!NumberPanel.IsUnityNull()){
         if(useStaticUI) {
             foreach(CounterDigit digit in digits) {
                 digit.disappear();
@@ -22,7 +24,7 @@ public class CounterArray : MonoBehaviour
             foreach(CounterDigit digit in digits) {
                 digit.appear();
                 digit.gameObject.SetActive(true);
-            }
+            }}
         }
         /*
         int i = digits.Length - 1;
@@ -37,6 +39,7 @@ public class CounterArray : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
+        if (!NumberPanel.IsUnityNull()){
         if(!useStaticUI) {
             if(prevGoal != goalNumber) {
                 int i = digits.Length - 1;
@@ -59,6 +62,6 @@ public class CounterArray : MonoBehaviour
             goalNumber += Time.deltaTime;
         } else {
             NumberPanel.text = $"{goalNumber:0.00}";
-        }
+        }}
     }
 }
