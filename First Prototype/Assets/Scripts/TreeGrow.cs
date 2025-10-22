@@ -18,19 +18,25 @@ public class TreeGrow : MonoBehaviour
 
     public void GrowTree(float growthrate, float maxw, float maxh)
     {
+        if(topSR.sortingOrder == 1)
+        {
+            topSR.sortingOrder = 2;
+        }
+        //if top of tree isn't max width, increase
         if (topSR.size.x < maxw)
         {
             topSR.size += new Vector2(growthrate, 0);
-        }
-        else if (topSR.size.x > maxw)
-        {
+            //if now too wide, set it to max
+            if (topSR.size.x > maxw)
+            {
             topSR.size = new Vector2(maxw, topSR.size.y);
+            }
         }
-
+        
         if (trunkSR.size.y < maxh)
         {
             trunkSR.size += new Vector2(0, growthrate);
-            TreeTop.transform.position += new Vector3(0, growthrate * 0.45f, TreeTop.transform.position.z);
+            TreeTop.transform.position += new Vector3(0, growthrate * 0.8f, TreeTop.transform.position.z);
         }
         else if (trunkSR.size.y > maxh)
         {
