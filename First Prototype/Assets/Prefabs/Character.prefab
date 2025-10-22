@@ -258,15 +258,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b568c95e0dc90e22b896b6daf0b7710, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  jumpSound: {fileID: 8300000, guid: 23c2e4ddbba101d45ad08bf34fbf71b6, type: 3}
   groundCapsule: {fileID: 6133673732735819785}
   maxSpeed: 7
   acceltime: 0.8
   deceltime: 0.8
   airAccel: 0.5
   jumpForgiveness: 0.8
+  climbSpeed: 2
+  scaleOfMaximumSpeediness: 0
+  minMaximumSpeed: 0
+  enteredCave: 0
+  landing: {fileID: 0}
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
+  grassWalkSound: {fileID: 0}
+  CaveWalkSound: {fileID: 0}
 --- !u!95 &6346393431449765871
 Animator:
   serializedVersion: 7
@@ -307,6 +316,7 @@ MonoBehaviour:
   minCharacterScale: 0.25
   drainRate: 0
   moveForce: 10
+  audioSource: {fileID: 0}
 --- !u!114 &7221198480295619156
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -319,6 +329,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c299ecd8b61d00c44b43a8fe66f3ba76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  talkSound: {fileID: 0}
   talkDistance: 2
   pausepanel: {fileID: 0}
   prompt: {fileID: 0}
