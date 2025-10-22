@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     public float scaleOfMaximumSpeediness;
     public float minMaximumSpeed;
     private float targetxVelocity;
+    public bool isSwimming;
     private float oldScaleFactor;
 
 
@@ -66,7 +67,12 @@ public class PlayerMovement : MonoBehaviour
         rb2D.gravityScale = 0;
         transform.position = new Vector3(xcoord, transform.position.y, transform.position.z);
         m_Grounded = false;
-        
+
+    }
+    public void StartSwim()
+    {
+        GameManager.Instance.canMove = false;
+        isSwimming = true;
     }
     
     public void EndClimb()
@@ -187,15 +193,19 @@ public class PlayerMovement : MonoBehaviour
             else
             {
                 animator.SetBool("isRunning", false);
-                
             }
-            
-
+        }
+        else if (isSwimming)
+        {
+            rb2D.linearVelocity = new Vector2(2, 0f);
         }
     }
     void FixedUpdate()
     {
+        
         rb2D.mass = Mathf.Max(GameManager.Instance.playerWater, transform.localScale.x);
+        
+        
         var dtime = Time.fixedTime - oldtime;
         float oldvx;
 
@@ -244,10 +254,6 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log("resetting acceleration");
                 resetFlag = true;
             }
-        }
-        else if (isclimbing)
-        {
-            
         }
         else
         {

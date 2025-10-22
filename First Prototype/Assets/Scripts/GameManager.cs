@@ -99,7 +99,10 @@ public class GameManager : MonoBehaviour
         dialogueText.text = null;
         dialoguePanel.SetActive(false);
     }
-
+    public void StopMove()
+    {
+        canMove = false;
+    }
     float charactersPerSecond = 90;
 
     IEnumerator TypeTextUncapped(string line)
