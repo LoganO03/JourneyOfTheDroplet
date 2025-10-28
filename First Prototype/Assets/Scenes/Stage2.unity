@@ -2517,6 +2517,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4962062828662296192, guid: ca8c64dcc05224e2497392d238c47310, type: 3}
+      propertyPath: landing
+      value: 
+      objectReference: {fileID: 1683458093}
+    - target: {fileID: 4962062828662296192, guid: ca8c64dcc05224e2497392d238c47310, type: 3}
       propertyPath: climbSpeed
       value: 4
       objectReference: {fileID: 0}
@@ -49649,6 +49653,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5657620924014061264, guid: b8c62b1d185e83242a326bbcfdad2274, type: 3}
+      propertyPath: splash
+      value: 
+      objectReference: {fileID: 677941796}
     - target: {fileID: 6531203616439631116, guid: b8c62b1d185e83242a326bbcfdad2274, type: 3}
       propertyPath: m_Name
       value: WaterPlatform 1
