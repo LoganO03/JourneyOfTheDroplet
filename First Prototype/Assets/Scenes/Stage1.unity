@@ -7351,6 +7351,7 @@ MonoBehaviour:
   climbSpeed: 2
   scaleOfMaximumSpeediness: 10
   minMaximumSpeed: 0.1
+  isSwimming: 0
   enteredCave: 0
   landing: {fileID: 65210380}
   OnLandEvent:
