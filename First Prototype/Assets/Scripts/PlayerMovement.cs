@@ -59,6 +59,8 @@ public class PlayerMovement : MonoBehaviour
 
     bool resetFlag;
 
+    private AudioSource bounceSFX;
+
     public void StartClimb(float xcoord)
     {
         isclimbing = true;
@@ -97,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
+        bounceSFX = GameObject.FindWithTag("BounceSFX").GetComponent<AudioSource>();
         currentWalkSound = grassWalkSound;
         enteredCave = false;
         oldScaleFactor = scaleFactor();
@@ -158,6 +161,7 @@ public class PlayerMovement : MonoBehaviour
                     //change these to change how much the jump pad affects the jump
                     forceamount = 900;
                     maxvel = 0.2f;
+                    bounceSFX.Play();
                 }
 
                 rb2D.AddForce(Vector2.up * forceamount * rb2D.mass);
