@@ -18,13 +18,6 @@ public class PlayerConvo : MonoBehaviour
     } 
     void Update()
     {
-        if(inConversation){
-            GameManager.Instance.canMove = false;
-        }
-        else{
-            GameManager.Instance.canMove = true;
-        }
-
         Prompt();
         if (Input.GetKeyDown(KeyCode.E))
         {

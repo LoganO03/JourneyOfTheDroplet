@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class StageEnd : MonoBehaviour
@@ -25,16 +26,20 @@ public class StageEnd : MonoBehaviour
         {
             endStage(collision.gameObject);
             maincamera.GetComponent<FollowCam>().enabled = false;
-            
+
+        }
+    }
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            GameManager.Instance.endLevel1 = true;
+            Initiate.Fade("Stage2", Color.black, 1.0f);
+            GameManager.Instance.canMove = true;
         }
     }
 
-    IEnumerator SwimAway(GameObject player)
-    {
-        yield return new WaitForSeconds(4f);
-        //GameManager.Instance.endLevel1 = true;
-        //Initiate.Fade("Stage2", Color.black, 1.0f);
-    }
+
 
     public void endStage(GameObject player)
     {
@@ -42,11 +47,9 @@ public class StageEnd : MonoBehaviour
         if(scene == 1){
             Rigidbody2D body = player.GetComponent<Rigidbody2D>();
             player.GetComponent<PlayerMovement>().StartSwim();
-            GameManager.Instance.StopMove();
+            GameManager.Instance.endLevel1 = true;
             body.mass = 0;
             body.gravityScale = 0;
-            
-            //StartCoroutine(SwimAway(player));
         }
     }
 
