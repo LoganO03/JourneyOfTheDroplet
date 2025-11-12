@@ -264,6 +264,9 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb2D.linearVelocity = new Vector2(0f, rb2D.linearVelocity.y);
             }
+            animator.SetFloat("Horizontal", 0);
+            animator.SetFloat("Vertical", 0);
+            animator.SetBool("isRunning", false);
             
         }
 

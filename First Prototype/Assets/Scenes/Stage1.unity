@@ -5741,7 +5741,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstInteraction: 1
-  repeatStartPosition: 4
+  repeatStartPosition: 2
   npcName: Drop Johnson
   dialogueAsset: {fileID: 11400000, guid: 5dff8c54b2cd0da4498133bb1e9a5246, type: 2}
 --- !u!212 &786475554
