@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour
         dialoguePanel.SetActive(true);
         StopAllCoroutines();
         StartCoroutine(RunDialogue(dialogue, startPosition));
+        canMove = false;
     }
 
     IEnumerator RunDialogue(string[] dialogue, int startPosition)
@@ -70,6 +71,7 @@ public class GameManager : MonoBehaviour
         }
 
         OnDialogueEnded?.Invoke();
+        canMove = true;
         dialoguePanel.SetActive(false);
     }
 
@@ -98,6 +100,7 @@ public class GameManager : MonoBehaviour
         nameText.text = null;
         dialogueText.text = null;
         dialoguePanel.SetActive(false);
+        canMove = true;
     }
     public void StopMove()
     {
@@ -153,7 +156,10 @@ public class GameManager : MonoBehaviour
             }
             NumberInterface.goalNumber = playerWater;
         }
-
+        else if (NumberInterface.IsUnityNull())
+        {
+            NumberInterface = Camera.main.transform.Find("Counter Array").GetComponent<CounterArray>(); 
+        }
     }
 
     
