@@ -102,7 +102,11 @@ public class PlayerMovement : MonoBehaviour
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
-        bounceSFX = GameObject.FindWithTag("BounceSFX").GetComponent<AudioSource>();
+        if (GameObject.FindWithTag("BounceSFX") != null)
+        {
+            if (GameObject.FindWithTag("BounceSFX").TryGetComponent(out AudioSource boing))
+            { bounceSFX = boing; }
+        }
         currentWalkSound = grassWalkSound;
         enteredCave = false;
         oldScaleFactor = scaleFactor();
