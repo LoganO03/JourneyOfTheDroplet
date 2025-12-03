@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     bool lineFinished;
 
     public bool endLevel1 = false;
+    public bool endLevel2 = false;
 
     public void StartDialogue(string[] dialogue, int startPosition, string name)
     {
