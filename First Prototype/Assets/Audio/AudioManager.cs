@@ -10,11 +10,13 @@ public class AudioManager : MonoBehaviour
     public Slider MasterSlider;
     public Slider MusicSlider;
     public Slider SFXSlider;
+    AudioSource SFXChangeJingle;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     void Start()
     {
+        SFXChangeJingle = GetComponent<AudioSource>();
     }
     public void AdjustMasterVolume()
     {
@@ -32,5 +34,6 @@ public class AudioManager : MonoBehaviour
     {
         Debug.Log("Adjusting SFX volume.");
         AudioInbetween.Instance.AdjustVolume("SFX", Mathf.Log10(SFXSlider.value) * 20);
+        SFXChangeJingle.Play();
     }
 }
