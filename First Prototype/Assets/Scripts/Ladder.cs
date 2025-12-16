@@ -6,11 +6,13 @@ public class Ladder : MonoBehaviour
     bool isClimbable = false;
     bool isClimbing = false;
     GameObject top;
+    private AudioSource climbSFX;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         top = transform.Find("TopLadder").gameObject;
+        climbSFX = GameObject.FindWithTag("ClimbingSFX").GetComponent<AudioSource>();
     }
     void OnTriggerEnter2D(Collider2D col)
     {
@@ -25,6 +27,7 @@ public class Ladder : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
+            climbSFX.Stop();
             isClimbable = false;
             isClimbing = false;
             top.GetComponent<Collider2D>().enabled = true;
@@ -33,6 +36,7 @@ public class Ladder : MonoBehaviour
 
     public void StopClimbing()
     {
+        climbSFX.Stop();
         isClimbing = false;
     }
     private IEnumerator canClimb(GameObject player)
@@ -41,6 +45,10 @@ public class Ladder : MonoBehaviour
         {
             if (Input.GetAxis("Vertical") > 0)
             {
+                if (!climbSFX.isPlaying)
+                {
+                    climbSFX.Play();
+                }
                 Debug.Log("start");
                 player.GetComponent<PlayerMovement>().StartClimb(transform.position.x);
                 isClimbing = true;
@@ -49,6 +57,7 @@ public class Ladder : MonoBehaviour
             }
             else
             {
+                climbSFX.Stop();
                 yield return null;
             }
 
