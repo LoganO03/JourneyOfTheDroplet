@@ -1809,7 +1809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1675342461}
-  speed: 3
+  speed: 5
   scaleSpeed: 3
   cam: {fileID: 507448939}
   startZoom: 100
