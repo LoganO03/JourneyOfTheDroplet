@@ -617,7 +617,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 8
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.08823532, y: 0.08823532, z: 0}
   m_MaxChunkCount: 16
@@ -1839,6 +1839,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2555501899719358748, guid: ebdd67a49bc59f64fb030002fdc44a02, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2750284841199650733, guid: ebdd67a49bc59f64fb030002fdc44a02, type: 3}
       propertyPath: m_Name
       value: MushroomJump (4)
@@ -2106,7 +2110,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 8
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.08823532, y: 0.08823532, z: 0}
   m_MaxChunkCount: 16
@@ -3396,9 +3400,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3792079632211719521, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4191644034478836044, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
       propertyPath: m_Name
       value: Tree (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046746933520281677, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4067,7 +4079,7 @@ GameObject:
   - component: {fileID: 431043686}
   - component: {fileID: 431043685}
   m_Layer: 0
-  m_Name: temp_background
+  m_Name: sky_background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4118,7 +4130,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.13363294, g: 0.3254902, b: 0.16862746, a: 1}
+  m_Color: {r: 0.60784316, g: 0.6784314, b: 0.7176471, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4137,8 +4149,8 @@ Transform:
   m_GameObject: {fileID: 431043684}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 32.3, y: 26.5, z: 0}
-  m_LocalScale: {x: 200, y: 100, z: 1}
+  m_LocalPosition: {x: 26.4485, y: 43.4543, z: 0}
+  m_LocalScale: {x: 218.00214, y: 133.91, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -5242,6 +5254,10 @@ PrefabInstance:
       propertyPath: maxHeight
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5731280676932818582, guid: 4064557e0eb74c34891328ff4bb19e12, type: 3}
+      propertyPath: m_SortingOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 9089773709236536339, guid: 4064557e0eb74c34891328ff4bb19e12, type: 3}
       propertyPath: m_Name
       value: LadderPlant (2)
@@ -5478,6 +5494,10 @@ PrefabInstance:
     - target: {fileID: 7738965010457845840, guid: ca8c64dcc05224e2497392d238c47310, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8840924002917462836, guid: ca8c64dcc05224e2497392d238c47310, type: 3}
+      propertyPath: m_SortingOrder
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2620845263718380772, guid: ca8c64dcc05224e2497392d238c47310, type: 3}
@@ -5995,6 +6015,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2555501899719358748, guid: ebdd67a49bc59f64fb030002fdc44a02, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2750284841199650733, guid: ebdd67a49bc59f64fb030002fdc44a02, type: 3}
       propertyPath: m_Name
       value: MushroomJump (2)
@@ -6504,6 +6528,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1928759164462223156, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 61.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 1928759164462223156, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792079632211719521, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046746933520281677, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 3821435345381408897, guid: b8c62b1d185e83242a326bbcfdad2274, type: 3}
       propertyPath: m_LocalPosition.x
       value: 37.19
@@ -6737,6 +6777,113 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &1303228662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1303228665}
+  - component: {fileID: 1303228664}
+  - component: {fileID: 1303228666}
+  m_Layer: 0
+  m_Name: NewBackground_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1303228664
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303228662}
+  m_Enabled: 0
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 6746023989205947408, guid: fea5d757f4d15e9409cef766708e0715, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 10.24, y: 10.24}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 0
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1303228665
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303228662}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1303228666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1303228662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44a68fc2746ea164db35dde8e030525c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backgrounds:
+  - {fileID: 1208040086343421634, guid: e330340bd419b3445825306ade71bb26, type: 3}
+  - {fileID: -5412910156287300836, guid: 4f48b23d8566d9f49a73e888a088f0d8, type: 3}
+  - {fileID: -1455096403836856330, guid: 264576cad9426eb4ea106e74a1d4544b, type: 3}
+  - {fileID: 1248784056254802929, guid: a10220b6235f37c439dff30646292d03, type: 3}
+  - {fileID: -3369390543426049443, guid: 6a19b649cbcf48247953bf763bc44f43, type: 3}
+  backgroundSize: 20.4
 --- !u!1 &1320808705
 GameObject:
   m_ObjectHideFlags: 0
@@ -7089,7 +7236,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 8
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0.08823532, y: 0.08823532, z: 0}
   m_MaxChunkCount: 16
@@ -63350,7 +63497,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 8
   m_Sprite: {fileID: 6049605792901559095, guid: d820808bfb9233c4eb2093c4e84734b2, type: 3}
   m_Color: {r: 0.54509807, g: 0.63529414, b: 0.9490196, a: 1}
   m_FlipX: 0
@@ -63430,6 +63577,10 @@ PrefabInstance:
     - target: {fileID: 2364246154759622512, guid: 4064557e0eb74c34891328ff4bb19e12, type: 3}
       propertyPath: maxHeight
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5731280676932818582, guid: 4064557e0eb74c34891328ff4bb19e12, type: 3}
+      propertyPath: m_SortingOrder
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 9089773709236536339, guid: 4064557e0eb74c34891328ff4bb19e12, type: 3}
       propertyPath: m_Name
@@ -63731,7 +63882,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 6
   m_Sprite: {fileID: 3400160013776356846, guid: 9aa2f822c1c9d4123bb2bb0314333f5a, type: 3}
   m_Color: {r: 0.54509807, g: 0.63529414, b: 0.9490196, a: 1}
   m_FlipX: 0
@@ -64113,6 +64264,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2555501899719358748, guid: ebdd67a49bc59f64fb030002fdc44a02, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2750284841199650733, guid: ebdd67a49bc59f64fb030002fdc44a02, type: 3}
       propertyPath: m_Name
       value: MushroomJump (3)
@@ -64662,6 +64817,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2555501899719358748, guid: ebdd67a49bc59f64fb030002fdc44a02, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2750284841199650733, guid: ebdd67a49bc59f64fb030002fdc44a02, type: 3}
       propertyPath: m_Name
       value: MushroomJump (1)
@@ -65005,9 +65164,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3792079632211719521, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4191644034478836044, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
       propertyPath: m_Name
       value: Tree (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8046746933520281677, guid: b58436f14fb50084fba7fdbc99598c08, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -65282,6 +65449,93 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &2021072865
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2021072867}
+  - component: {fileID: 2021072866}
+  m_Layer: 0
+  m_Name: layer1 _filler
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &2021072866
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021072865}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Color: {r: 0.098039225, g: 0.4901961, b: 0.32941177, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &2021072867
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2021072865}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 64.0683, y: -5.8094, z: 0}
+  m_LocalScale: {x: 19.389048, y: 1.500904, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2104066253 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5657620924014061264, guid: b8c62b1d185e83242a326bbcfdad2274, type: 3}
@@ -65345,6 +65599,10 @@ PrefabInstance:
       propertyPath: maxHeight
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5731280676932818582, guid: 4064557e0eb74c34891328ff4bb19e12, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 9089773709236536339, guid: 4064557e0eb74c34891328ff4bb19e12, type: 3}
       propertyPath: m_Name
       value: LadderPlant
@@ -65362,6 +65620,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2555501899719358748, guid: ebdd67a49bc59f64fb030002fdc44a02, type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 2750284841199650733, guid: ebdd67a49bc59f64fb030002fdc44a02, type: 3}
       propertyPath: m_Name
       value: MushroomJump
@@ -65432,6 +65694,7 @@ SceneRoots:
   - {fileID: 100717289}
   - {fileID: 121359381}
   - {fileID: 431043686}
+  - {fileID: 2021072867}
   - {fileID: 1360428849}
   - {fileID: 1824880382}
   - {fileID: 957693510}
@@ -65464,3 +65727,4 @@ SceneRoots:
   - {fileID: 1616466677}
   - {fileID: 472062219}
   - {fileID: 1255443414}
+  - {fileID: 1303228665}
