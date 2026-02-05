@@ -13,6 +13,9 @@ public class Plant : MonoBehaviour
     public bool tree;
     public float maxWidth;
     public float maxHeight;
+    private AudioSource growingSound;
+    private AudioSource finishGrowing;
+    private bool finishedGrowing;
 
     bool isClimbable = false;
     
@@ -21,7 +24,25 @@ public class Plant : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        finishedGrowing = false;
+        finishGrowing = GameObject.FindWithTag("FinishedGrowing").GetComponent<AudioSource>();
         sr = GetComponent<SpriteRenderer>();
+        if (bounce)
+        {
+            growingSound = GameObject.FindWithTag("GrowingMushroom").GetComponent<AudioSource>();
+        }
+        else if (tree)
+        {
+            growingSound = GameObject.FindWithTag("GrowingTree").GetComponent<AudioSource>();
+        }
+        else if (ladder)
+        {
+            growingSound = GameObject.FindWithTag("GrowingVine").GetComponent<AudioSource>();
+        }
+        else
+        {
+            Debug.Log("Error: Plant type undefined");
+        }
     }
 
 
@@ -29,6 +50,21 @@ public class Plant : MonoBehaviour
 
     public void Grow()
     {
+        if (sr.size.y < maxHeight)
+        {
+            if (growingSound != null && !growingSound.isPlaying())
+            {
+                growingSound.Play();
+            }
+        }
+        else
+        {
+            if (finishedGrowing = false)
+            {
+                finishedGrowing = true;
+                finishGrowing.Play();
+            }
+        }
         if (ladder)
         {
             sr.size += new Vector2(0, growthRate);
@@ -47,9 +83,9 @@ public class Plant : MonoBehaviour
             if (transform.localScale.x >= maxWidth)
             {
                 transform.localScale = new Vector2(maxWidth, transform.localScale.y);
-                    GetComponent<JumpPad>().enabled = true;
-                    GetComponent<BoxCollider2D>().enabled = true;
-                
+                GetComponent<JumpPad>().enabled = true;
+                GetComponent<BoxCollider2D>().enabled = true;
+
 
             }
             else if (transform.localScale.y >= maxHeight)
@@ -60,8 +96,8 @@ public class Plant : MonoBehaviour
             {
                 transform.localScale += new Vector3(growthRate, growthRate, 0);
                 transform.position += new Vector3(0, -(growthRate / 3), 0);
-                
-                
+
+
             }
         }
         else if (tree)
