@@ -18,12 +18,14 @@ public class Plant : MonoBehaviour
     private bool finishedGrowing;
 
     bool isClimbable = false;
+    private bool growing;
     
 
     private SpriteRenderer sr;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        growing = false;
         finishedGrowing = false;
         finishGrowing = GameObject.FindWithTag("FinishedGrowing").GetComponent<AudioSource>();
         sr = GetComponent<SpriteRenderer>();
@@ -50,6 +52,7 @@ public class Plant : MonoBehaviour
 
     public void Grow()
     {
+        growing = true;
         if (sr.size.y < maxHeight)
         {
             if (growingSound != null && !growingSound.isPlaying)
@@ -62,6 +65,7 @@ public class Plant : MonoBehaviour
             if (finishedGrowing = false)
             {
                 finishedGrowing = true;
+                growingSound.Stop();
                 finishGrowing.Play();
             }
         }
@@ -118,11 +122,15 @@ public class Plant : MonoBehaviour
                 transform.position += new Vector3(0, growthRate, 0);
             }
         }
+        growing = false;
         
     }
     // Update is called once per frame
     void Update()
     {
-        
+        if ((growingSound != null) && (growingSound.isPlaying && growing == false))
+        {
+            growingSound.Stop();
+        }   
     }
 }
