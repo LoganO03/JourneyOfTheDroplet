@@ -52,7 +52,7 @@ public class Plant : MonoBehaviour
     {
         if (sr.size.y < maxHeight)
         {
-            if (growingSound != null && !growingSound.isPlaying())
+            if (growingSound != null && !growingSound.isPlaying)
             {
                 growingSound.Play();
             }
