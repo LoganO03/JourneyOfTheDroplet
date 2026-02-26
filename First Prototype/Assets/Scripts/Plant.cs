@@ -15,7 +15,6 @@ public class Plant : MonoBehaviour
     public float maxHeight;
     private AudioSource growingSound;
     private AudioSource finishGrowing;
-    private bool finishedGrowing;
     private int countdown = 10;
     private int countdown_base;
     private bool finishedplayed;
@@ -30,8 +29,7 @@ public class Plant : MonoBehaviour
     {
         finishedplayed = false;
         countdown_base = countdown;
-        growing = false;
-        finishedGrowing = false;
+        growing = true;
         finishGrowing = GameObject.FindWithTag("FinishedGrowing").GetComponent<AudioSource>();
         sr = GetComponent<SpriteRenderer>();
         if (bounce)
@@ -60,7 +58,7 @@ public class Plant : MonoBehaviour
 
     public void Grow()
     {
-        growing = true;
+        
         if (sr.size.y < maxHeight)
         {
             if (growingSound != null && !growingSound.isPlaying)
@@ -75,7 +73,7 @@ public class Plant : MonoBehaviour
             sr.size += new Vector2(0, growthRate);
             if (sr.size.y >= maxHeight)
             {
-                finishedGrowing = true;
+                growing = false;
                 sr.size = new Vector2(sr.size.x, maxHeight);
                 GetComponent<Collider2D>().isTrigger = true;
                 GetComponent<Ladder>().enabled = true;
@@ -88,7 +86,7 @@ public class Plant : MonoBehaviour
             //when mushroom is right width, jump pad is enabled
             if (transform.localScale.x >= maxWidth)
             {
-                finishedGrowing = true;
+                growing = false;
                 transform.localScale = new Vector2(maxWidth, transform.localScale.y);
                 GetComponent<JumpPad>().enabled = true;
                 GetComponent<BoxCollider2D>().enabled = true;
@@ -118,7 +116,7 @@ public class Plant : MonoBehaviour
                 }
                 transform.localScale = new Vector2(1, 1);
                 GetComponent<TreeGrow>().GrowTree(growthRate, maxWidth, maxHeight);
-                finishedGrowing = true;
+                growing = false;
             }
             else
             {
@@ -126,18 +124,18 @@ public class Plant : MonoBehaviour
                 transform.position += new Vector3(0, growthRate, 0);
             }
         }
-        growing = false;
+
         
     }
     // Update is called once per frame
     void Update()
     {
         
-        if ((growingSound != null) && (growingSound.isPlaying && !growing) && finishedGrowing)
+        if ((growingSound != null) && (growingSound.isPlaying && !growing))
         {
             
             
-            if (countdown > 0 && !finishedGrowing)
+            if (countdown > 0)
             {
                 Debug.Log(countdown);
                 countdown--;
@@ -149,7 +147,7 @@ public class Plant : MonoBehaviour
                 countdown = countdown_base;
             }
         }
-        if (finishedGrowing && !finishedplayed)
+        if (!growing && !finishedplayed)
         {
             finishGrowing.Play();
             finishedplayed = true;
