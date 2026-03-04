@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9300cdd1a21ad44ba3fb44ddb8e9e37, type: 3}
+  m_Name: WaterSupplyDialogue
+  m_EditorClassIdentifier: 
+  dialogue:
+  - Over 96% of the water on the Earth's surface is saline water in the ocean.
+  - Most fresh water is underground or in glaciers.
+  - Only a tiny fraction of fresh water can be found as vapor in the air or on the
+    surface in streams, lakes, and wetlands.
