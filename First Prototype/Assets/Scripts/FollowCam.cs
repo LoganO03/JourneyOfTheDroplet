@@ -52,7 +52,7 @@ public class FollowCam : MonoBehaviour
             }
             if (playerMovement.jumpedFromPad)
             {
-                newSize = 10f;
+                newSize = 18f;
                 GetComponent<Camera>().orthographicSize += (newSize - GetComponent<Camera>().orthographicSize) * Time.deltaTime;
 
             }
