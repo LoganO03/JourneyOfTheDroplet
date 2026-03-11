@@ -1,7 +1,9 @@
 using System.Collections;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Plant : MonoBehaviour
 {
@@ -13,15 +15,18 @@ public class Plant : MonoBehaviour
     public bool tree;
     public float maxWidth;
     public float maxHeight;
+    private Animator animator;
 
     bool isClimbable = false;
-    
+    bool growing = false;
 
     private SpriteRenderer sr;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+        animator.SetBool("Wiggling", true);
     }
 
 
@@ -29,6 +34,11 @@ public class Plant : MonoBehaviour
 
     public void Grow()
     {
+        if (!growing)
+        {
+            growing = true;
+            animator.SetBool("Wiggling", false);
+        }
         if (ladder)
         {
             sr.size += new Vector2(0, growthRate);
