@@ -4,6 +4,7 @@ public class FollowCam : MonoBehaviour
 {
 
     public GameObject playerSprite;
+    public PlayerMovement playerMovement;
     public float boundaryPercent;
     public float easing;
     public float scaleEasing;
@@ -20,11 +21,13 @@ public class FollowCam : MonoBehaviour
     void Start()
     {
         rb2d = playerSprite.GetComponent<Rigidbody2D>();
+        playerMovement = playerSprite.GetComponent<PlayerMovement>();
         lastPosition = playerSprite.transform.position;
         lBound = boundaryPercent * Camera.main.pixelWidth;
         rBound = Camera.main.pixelWidth - lBound;
         dBound = boundaryPercent * Camera.main.pixelHeight;
         uBound = Camera.main.pixelHeight - dBound;
+
     }
 
     // Update is called once per frame
@@ -47,6 +50,13 @@ public class FollowCam : MonoBehaviour
                 GetComponent<Camera>().orthographicSize += (newSize - GetComponent<Camera>().orthographicSize) * scaleEasing * Time.deltaTime;
                 transform.localScale += (transform.localScale * scaleAmount - transform.localScale) * scaleEasing * Time.deltaTime;
             }
+            if (playerMovement.jumpedFromPad)
+            {
+                newSize = 18f;
+                GetComponent<Camera>().orthographicSize += (newSize - GetComponent<Camera>().orthographicSize) * Time.deltaTime;
+
+            }
+
 
             Vector3 spriteLoc = Camera.main.WorldToScreenPoint(playerSprite.transform.position);
 
@@ -73,5 +83,6 @@ public class FollowCam : MonoBehaviour
             transform.position += pos;
         }
         lastPosition = playerSprite.transform.position;
+        
     }
 }
