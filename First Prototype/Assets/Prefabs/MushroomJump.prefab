@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1129214769912707586}
   - component: {fileID: 670310864370820929}
   - component: {fileID: 6261785367035634508}
+  - component: {fileID: 6506623987253240250}
   m_Layer: 0
   m_Name: MushroomJump
   m_TagString: Plant
@@ -107,6 +108,8 @@ MonoBehaviour:
   speed: 1
   ladder: 0
   bounce: 1
+  platform: 0
+  tree: 0
   maxWidth: 2
   maxHeight: 1.7
 --- !u!61 &1129214769912707586
@@ -213,3 +216,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab0070ca1d325b409816f490b8f9b55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &6506623987253240250
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2750284841199650733}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1a1cb5d0b6dece3438c39fb12f17e0e9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

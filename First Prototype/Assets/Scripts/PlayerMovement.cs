@@ -29,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
     private float oldScaleFactor;
 
 
-
     
     private bool m_Grounded;
     public bool enteredCave;
@@ -56,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isclimbing;
 
     private bool onJumpPad = false;
+    public bool jumpedFromPad = false;
 
     bool resetFlag;
 
@@ -166,6 +166,7 @@ public class PlayerMovement : MonoBehaviour
         
                 {
                     //change these to change how much the jump pad affects the jump
+                    jumpedFromPad = true;
                     forceamount = 900;
                     maxvel = 0.2f;
                     bounceSFX.Play();
@@ -209,6 +210,16 @@ public class PlayerMovement : MonoBehaviour
         else if (isSwimming)
         {
             rb2D.linearVelocity = new Vector2(3f, 0f);
+        }
+
+        if (jumpedFromPad)
+        {
+            Debug.Log("I jumped from pad");
+            if (animator.GetBool("grounded"))
+            {
+                jumpedFromPad = false;
+                Debug.Log("I am on the ground now");
+            }
         }
     }
     void FixedUpdate()

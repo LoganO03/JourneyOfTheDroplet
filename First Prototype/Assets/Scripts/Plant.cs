@@ -1,7 +1,9 @@
 using System.Collections;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Plant : MonoBehaviour
 {
@@ -18,10 +20,10 @@ public class Plant : MonoBehaviour
     private int countdown = 10;
     private int countdown_base;
     private bool finishedplayed;
+    private Animator animator;
 
     bool isClimbable = false;
-    private bool growing;
-    
+    bool growing = false;
 
     private SpriteRenderer sr;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -32,6 +34,8 @@ public class Plant : MonoBehaviour
         growing = true;
         finishGrowing = GameObject.FindWithTag("FinishedGrowing").GetComponent<AudioSource>();
         sr = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
+        animator.SetBool("Wiggling", true);
         if (bounce)
             Debug.Log("I'm a mushroom!");
         {
@@ -58,6 +62,11 @@ public class Plant : MonoBehaviour
 
     public void Grow()
     {
+        if (!growing)
+        {
+            growing = true;
+            animator.SetBool("Wiggling", false);
+        }
         
         if (sr.size.y < maxHeight)
         {

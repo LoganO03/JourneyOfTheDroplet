@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5796313285879820818}
   - component: {fileID: 1397152604811142867}
   - component: {fileID: 1676346069341261254}
+  - component: {fileID: 4422984003676138393}
   m_Layer: 0
   m_Name: Tree
   m_TagString: Plant
@@ -27,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4191644034478836044}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.0028746172, w: 0.99999595}
   m_LocalPosition: {x: 13.48, y: -2.562, z: -0.023442814}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
@@ -35,7 +36,7 @@ Transform:
   - {fileID: 8649648066236189826}
   - {fileID: 3888753806657782014}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -0.329}
 --- !u!114 &5796313285879820818
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,6 +115,28 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
+--- !u!95 &4422984003676138393
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4191644034478836044}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1a1cb5d0b6dece3438c39fb12f17e0e9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4697217417697364370
 GameObject:
   m_ObjectHideFlags: 0
