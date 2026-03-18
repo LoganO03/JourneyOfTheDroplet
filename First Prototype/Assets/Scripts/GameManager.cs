@@ -22,9 +22,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public bool canMove = true;
-    [SerializeField] TextMeshProUGUI dialogueText;
-    [SerializeField] TextMeshProUGUI nameText;
-    [SerializeField] GameObject dialoguePanel;
+    public TextMeshProUGUI dialogueText;
+    public TextMeshProUGUI nameText;
+    public GameObject dialoguePanel;
     [SerializeField] CounterArray NumberInterface;
 
     [SerializeField] public float playerWater = 0;
@@ -144,6 +144,11 @@ public class GameManager : MonoBehaviour
     void Start()
     {
 
+    }
+
+    public void SetWater(int water)
+    {
+        playerWater = water;
     }
 
     // Update is called once per frame

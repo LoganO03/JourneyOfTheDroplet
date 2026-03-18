@@ -36,6 +36,7 @@ public class StageEnd : MonoBehaviour
             GameManager.Instance.endLevel1 = true;
             Initiate.Fade("Stage2", Color.black, 1.0f);
             GameManager.Instance.canMove = true;
+            GameManager.Instance.SetWater(10);
         }
     }
 
