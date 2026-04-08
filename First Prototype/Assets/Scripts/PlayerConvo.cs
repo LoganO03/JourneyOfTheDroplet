@@ -50,6 +50,14 @@ public class PlayerConvo : MonoBehaviour
 
                 if (hit.collider.gameObject.TryGetComponent(out NPC npc))
                 {
+                    if (hit.collider.gameObject.GetComponent<NPC>().notSpokenTo() == true )
+                    {
+                        Interact();
+                    }
+                    else
+                    {
+                        
+                    }
                     prompt.SetActive(true);
                 }
                 else{
