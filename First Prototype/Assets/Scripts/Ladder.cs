@@ -41,6 +41,7 @@ public class Ladder : MonoBehaviour
     }
     private IEnumerator canClimb(GameObject player)
     {
+        bool startedClimbing = false;
         while (isClimbable)
         {
             if (Input.GetAxis("Vertical") > 0)
@@ -54,6 +55,7 @@ public class Ladder : MonoBehaviour
                 isClimbing = true;
                 isClimbable = false;
                 top.GetComponent<Collider2D>().enabled = false;
+                startedClimbing = true;
             }
             else
             {
@@ -62,6 +64,8 @@ public class Ladder : MonoBehaviour
             }
 
         }
+        if (!startedClimbing)
+            yield break;
         while (isClimbing)
         {
             yield return null;
