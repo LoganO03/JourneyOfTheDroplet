@@ -10,6 +10,10 @@ TagManager:
   - Plant
   - ClimbingSFX
   - BounceSFX
+  - FinishedGrowing
+  - GrowingTree
+  - GrowingVine
+  - GrowingMushroom
   layers:
   - Default
   - TransparentFX
