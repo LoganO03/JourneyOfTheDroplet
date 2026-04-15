@@ -11820,6 +11820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstInteraction: 1
   repeatStartPosition: 0
+  AutoTalk: 1
   npcName: Droppie
   dialogueAsset: {fileID: 11400000, guid: c8cbb5a620217eb48aec55b097d0ffb6, type: 2}
 --- !u!212 &1173162500
@@ -69504,7 +69505,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.09836894, y: 0.16941524}
+  m_Offset: {x: -0.15723133, y: 0.70506227}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -69514,7 +69515,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.0356268, y: 1.7332749}
+  m_Size: {x: 1.6007042, y: 2.804569}
   m_EdgeRadius: 0
 --- !u!114 &1360428847
 MonoBehaviour:
@@ -69530,6 +69531,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstInteraction: 1
   repeatStartPosition: 3
+  AutoTalk: 1
   npcName: Dropert
   dialogueAsset: {fileID: 11400000, guid: 1e6e3e34d49decc43a59cfecc957d8e6, type: 2}
 --- !u!212 &1360428848
@@ -69827,6 +69829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstInteraction: 1
   repeatStartPosition: 0
+  AutoTalk: 1
   npcName: Sunny Flower
   dialogueAsset: {fileID: 11400000, guid: 8237cd9d8756f1e47992658fb49ae7dc, type: 2}
 --- !u!212 &1448209336
@@ -71544,6 +71547,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstInteraction: 1
   repeatStartPosition: 2
+  AutoTalk: 1
   npcName: Shrubbert
   dialogueAsset: {fileID: 11400000, guid: 9fb56faa627e9f2458c85e3a64dd7db1, type: 2}
 --- !u!212 &2017975083
@@ -71812,6 +71816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstInteraction: 1
   repeatStartPosition: 0
+  AutoTalk: 1
   npcName: Robin
   dialogueAsset: {fileID: 11400000, guid: 12b4eaf8653dcd645b5fb7e990b6e869, type: 2}
 --- !u!212 &2080444393

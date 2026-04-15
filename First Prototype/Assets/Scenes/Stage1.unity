@@ -3130,6 +3130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstInteraction: 1
   repeatStartPosition: 3
+  AutoTalk: 1
   npcName: Bob the Drop
   dialogueAsset: {fileID: 11400000, guid: 8861190576bdd844ea5060e6265e5af2, type: 2}
 --- !u!212 &500276886
@@ -3430,6 +3431,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSprite: {fileID: 937620642}
+  playerMovement: {fileID: 0}
   boundaryPercent: 0.495
   easing: 0.1
   scaleEasing: 0.5
@@ -5609,6 +5611,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstInteraction: 1
   repeatStartPosition: 2
+  AutoTalk: 1
   npcName: Drop Johnson
   dialogueAsset: {fileID: 11400000, guid: 5dff8c54b2cd0da4498133bb1e9a5246, type: 2}
 --- !u!212 &786475554
@@ -6180,6 +6183,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstInteraction: 1
   repeatStartPosition: 5
+  AutoTalk: 1
   npcName: Droppie
   dialogueAsset: {fileID: 11400000, guid: 9fbfa7ad73147b443a08cfa169f94a75, type: 2}
 --- !u!212 &851505460
@@ -7224,6 +7228,7 @@ MonoBehaviour:
   OnLandEvent:
     m_PersistentCalls:
       m_Calls: []
+  jumpedFromPad: 0
   grassWalkSound: {fileID: 1813488219}
   CaveWalkSound: {fileID: 133615053}
 --- !u!70 &937620644
@@ -177087,6 +177092,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstInteraction: 1
   repeatStartPosition: 5
+  AutoTalk: 0
   npcName: Old Well
   dialogueAsset: {fileID: 11400000, guid: 8c6046d6583a03040bc755a1d4aa2f68, type: 2}
 --- !u!61 &1421796235
@@ -180210,6 +180216,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maincamera: {fileID: 519420028}
   scene: 1
+  endpanel: {fileID: 0}
 --- !u!61 &1465443087
 BoxCollider2D:
   m_ObjectHideFlags: 0

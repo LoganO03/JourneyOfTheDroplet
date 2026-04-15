@@ -5,8 +5,9 @@ public class PlayerConvo : MonoBehaviour
 {
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip talkSound;
-    [SerializeField] float talkDistance = 2;
+    [SerializeField] float talkDistance = 1;
     bool inConversation;
+    bool firstConvo;
 
     public GameObject pausepanel;
 
@@ -46,19 +47,22 @@ public class PlayerConvo : MonoBehaviour
         if(!pausepanel.activeInHierarchy){
             if (hit)
             {
-                Debug.Log("Hit Something!!" + hit.collider.gameObject.name);
+                //Debug.Log("Hit Something!!" + hit.collider.gameObject.name);
 
-                if (hit.collider.gameObject.TryGetComponent(out NPC npc))
+                if (hit.collider.gameObject.TryGetComponent(out NPC npc) && !inConversation)
                 {
+                    prompt.SetActive(true);
                     if (hit.collider.gameObject.GetComponent<NPC>().notSpokenTo() == true )
                     {
+                        firstConvo = hit.collider.gameObject.GetComponent<NPC>().firstConvo();
                         Interact();
+                        prompt.SetActive(false);
                     }
                     else
                     {
                         
                     }
-                    prompt.SetActive(true);
+                    
                 }
                 else{
                     prompt.SetActive(false);
@@ -76,22 +80,28 @@ public class PlayerConvo : MonoBehaviour
     void Interact()
     {
         Debug.Log("Interact");
+        Debug.Log(firstConvo);
         if (inConversation)
         {
+         
             Debug.Log("Skipping Line");
-            GameManager.Instance.SkipLine();
+            GameManager.Instance.SkipLine(!firstConvo);
+            
         }
         else
         {
-            Debug.Log("Looking for NPC");
+            //Debug.Log("Looking for NPC");
             RaycastHit2D hit = Physics2D.CircleCast(transform.position, talkDistance, Vector2.up, 0, LayerMask.GetMask("NPC"));
             if (hit)
             {
-                Debug.Log("Hit Something!!" + hit.collider.gameObject.name);
+                //Debug.Log("Hit Something!!" + hit.collider.gameObject.name);
 
                 if (hit.collider.gameObject.TryGetComponent(out NPC npc))
                 {
+                    firstConvo = npc.GetComponent<NPC>().firstConvo();
+                    Debug.Log(firstConvo);
                     GameManager.Instance.StartDialogue(npc.dialogueAsset.dialogue, npc.StartPosition, npc.npcName);
+                    
 
                     // 🔊 Play talking sound
                     if (audioSource != null && talkSound != null)

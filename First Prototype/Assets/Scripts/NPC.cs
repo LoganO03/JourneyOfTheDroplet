@@ -25,7 +25,9 @@ public class NPC : MonoBehaviour
             }
         }
     }
-
+    public bool firstConvo(){
+        return firstInteraction;
+    }
     public bool notSpokenTo()
     {
         if (AutoTalk)
