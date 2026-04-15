@@ -6,6 +6,7 @@ public class NPC : MonoBehaviour
     [SerializeField] public bool firstInteraction = true;
     [SerializeField] int repeatStartPosition;
 
+    public bool AutoTalk;
     public string npcName;
     public DialogueAsset dialogueAsset;
 
@@ -22,6 +23,20 @@ public class NPC : MonoBehaviour
             {
                 return repeatStartPosition;
             }
+        }
+    }
+    public bool firstConvo(){
+        return firstInteraction;
+    }
+    public bool notSpokenTo()
+    {
+        if (AutoTalk)
+        {
+            return firstInteraction;    
+        }
+        else
+        {
+            return false;
         }
     }
 }
