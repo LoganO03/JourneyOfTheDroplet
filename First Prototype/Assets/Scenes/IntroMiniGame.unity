@@ -4945,7 +4945,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Water Collected: 0 / 30'
+  m_text: 'Water Collected: 0 / 20'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a47ee0e8a85ae0845ac86d0ad9ad640e, type: 2}
   m_sharedMaterial: {fileID: 5589225488492564792, guid: a47ee0e8a85ae0845ac86d0ad9ad640e, type: 2}
@@ -6050,7 +6050,7 @@ MonoBehaviour:
   dialogueAsset: {fileID: 11400000, guid: 05f39f674a16efa4b8e431d4d6ef2663, type: 2}
   dialogueText: {fileID: 664276600}
   dialogueCanvasGroup: {fileID: 506047411}
-  startDelay: 12
+  startDelay: 11
   displayDuration: 4
   fadeDuration: 1
 --- !u!4 &2047865251

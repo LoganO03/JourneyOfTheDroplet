@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
         dialoguePanel.SetActive(false);
     }
 
-    public void SkipLine()
+    public void SkipLine(bool skippable)
     {
         if (lineFinished)
         {
@@ -84,7 +84,11 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            lineFinished = true;
+            if (skippable)
+            {
+                lineFinished = true;    
+            }
+            
         }
         
     }
@@ -107,7 +111,7 @@ public class GameManager : MonoBehaviour
     {
         canMove = false;
     }
-    float charactersPerSecond = 90;
+    float charactersPerSecond = 50;
 
     IEnumerator TypeTextUncapped(string line)
     {
