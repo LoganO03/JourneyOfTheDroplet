@@ -29,11 +29,18 @@ public class Plant : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        if (tree)
+        {
+            sr = GetComponentInChildren<SpriteRenderer>();
+        }
+        else
+        {
+            sr = GetComponent<SpriteRenderer>();
+        }
         finishedplayed = false;
         countdown_base = countdown;
         growing = true;
         finishGrowing = GameObject.FindWithTag("FinishedGrowing").GetComponent<AudioSource>();
-        sr = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         animator.SetBool("Wiggling", true);
         if (bounce)
