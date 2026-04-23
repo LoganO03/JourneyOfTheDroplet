@@ -7,6 +7,7 @@ public class StageEnd : MonoBehaviour
 
     public GameObject maincamera;
     public int scene;
+    public GameObject endpanel;
     private bool ending;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,7 +26,11 @@ public class StageEnd : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             endStage(collision.gameObject);
-            maincamera.GetComponent<FollowCam>().enabled = false;
+            if(scene == 1)
+            {
+                maincamera.GetComponent<FollowCam>().enabled = false;    
+            }
+            
 
         }
     }
@@ -33,10 +38,12 @@ public class StageEnd : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            GameManager.Instance.endLevel1 = true;
-            Initiate.Fade("Stage2", Color.black, 1.0f);
-            GameManager.Instance.canMove = true;
-            GameManager.Instance.SetWater(10);
+            if(scene == 1){
+                GameManager.Instance.endLevel1 = true;
+                Initiate.Fade("Stage2", Color.black, 1.0f);
+                GameManager.Instance.canMove = true;
+                GameManager.Instance.SetWater(10);
+            }
         }
     }
 
@@ -52,6 +59,19 @@ public class StageEnd : MonoBehaviour
             body.mass = 0;
             body.gravityScale = 0;
         }
+        if(scene == 2){
+            GameManager.Instance.endLevel2 = true;
+            endpanel.SetActive(true);
+            StartCoroutine(Ending());
+
+        }
+    }
+
+    IEnumerator Ending()
+    {
+        yield return new WaitForSeconds(4f);
+        endpanel.SetActive(false);
+        Initiate.Fade("TitleScene", Color.black, 1.0f);
     }
 
 }

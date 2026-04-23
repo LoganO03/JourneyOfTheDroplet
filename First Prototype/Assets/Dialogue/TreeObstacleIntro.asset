@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: TreeObstacleIntro
   m_EditorClassIdentifier: 
   dialogue:
-  - Transpiration is the process of water movement through a plant. About 97-99%
-    of the water that plants absorb is lost through transpiration.
-  - 'Water is absorbed at the roots, and then travels up through the plant. It reaches
-    the leaves and exits as vapor through small pores, called stomata. '
+  - 'Transpiration is the process of water movement through a plant. '
+  - About 97-99% of the water that plants absorb is lost through transpiration.
+  - Water is absorbed at the roots, and then travels up through the plant.
+  - 'It reaches the leaves and exits as vapor through small pores, called stomata. '
   - That tree sapling ahead looks promising!
   - If the tree grows, you will be able to jump on top of it to reach higher places!
